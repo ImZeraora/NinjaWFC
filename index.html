@@ -7,66 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NinjaWFC</title>
     <link rel="icon" href="favicon.png">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap');
-
-        body {
-            font-family: 'Roboto Mono', monospace;
-            padding: 0%;
-            margin: 0%;
-            border: 0%;
-        }
-
-        #logo-home {
-            width: 8%;
-            position: absolute;
-            top: 15px;
-            left: 100px;
-        }
-
-        header {
-            background-color: RGB(56, 20, 96);
-            height: 200px;
-            padding: 0%;
-            margin: 0%;
-            border: 0%;
-            position: absolute;
-            top: 0%;
-            width: 100%;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-        }
-
-        #NinjaWFCTitle {
-            border-radius: 25px;
-            background: #ffffff;
-            padding: 20px;
-            width: 200px;
-        }
-
-        #news{
-            text-align: center;
-            position: absolute;
-            top: 200px;
-        }
-        #time{
-            top: 0px;
-            right: 50px;
-            position: absolute;
-            border-radius: 25px;
-            background: #ffffff;
-            padding: 15px;
-        }
-        #vc{
-            margin: auto;
-            position: relative;
-            top: 375px;
-        }
-    </style>
+    <link rel="stylesheet" href="index.css">
+    <script type="text/javascript" src="variables.js"></script>
+    <script type="text/javascript" src="time.js"></script>
 </head>
 
 <body>
-    <header>
+    <header id="header">
         <center>
             <h2 id="NinjaWFCTitle">NinjaWFC</h2>
         </center>
@@ -76,7 +23,7 @@
     <div id="news">
         <h2>News:</h2>
         <h3>Start of Development 5/12/21</h3>
-        <p>If you are reading this, it means that the website has worked and you can now connect to NinjaWFC!
+        <p id="newsp">If you are reading this, it means that the website has worked and you can now connect to NinjaWFC!
             The website will be "completed" by the end of June and will have features like,
             Being able to detect how many players are on the server with more advanced methods,
             interactive design,
@@ -89,41 +36,6 @@
         <p id="vd">The reason why this video was chosen was because it is the "theme song" of MKW:BR, another project by TheNinjaKingOW (CEO of NinjaWFC)</p>
     </div></center>
     <footer></footer>
-    <script>
-        var current=new Date();
-        var chours=current.getHours();
-        var cmin=current.getMinutes();
-        var timeam="am";
-        window.onload=function(){
-            time();
-        }
-
-        function time(){
-            current=new Date();
-            chours=current.getHours();
-            cmin=current.getMinutes();
-            if(chours > 12){
-            chours = chours - 12;
-            timeam="pm"
-            }
-            else{
-
-            }
-            if(cmin <= 9)
-            document.getElementById("time").innerHTML=chours + ":" + "0" + cmin + timeam + " EST";
-            else{
-            document.getElementById("time").innerHTML=chours + ":" + cmin + timeam + " EST";
-            }
-            setInterval(function(){
-            time()
-            
-            
-            
-            
-            }, 60000);
-        }
-
-    </script>
 </body>
 
 </html>
