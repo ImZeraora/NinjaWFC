@@ -1,5 +1,15 @@
 window.onload=function(){
+    if(page=="index.html"){
+    }
+    else{
+    document.getElementById("creatorimg").addEventListener('click', ninjasound)
+    }
     time();
+}
+
+function ninjasound(){
+    audio=new Audio('gladiator.wav')
+    audio.play();
 }
 
 function time(){
