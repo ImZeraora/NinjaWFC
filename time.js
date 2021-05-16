@@ -1,5 +1,5 @@
 window.onload=function(){
-    if(page=="index.html"){
+    if(page=="index.html" || page=="codes.html"){
     }
     else{
     document.getElementById("creatorimg").addEventListener('click', ninjasound)
