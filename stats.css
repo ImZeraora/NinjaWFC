@@ -43,7 +43,7 @@
             padding: 15px;
         }
 
-        #creator{
+        #statsheader{
             margin-top: 250px;
             text-align: center;
         }
@@ -74,13 +74,8 @@
             width: 98.9%;
             border-right: red 11px solid;
         }
-        #creatorimg{
+        #creatorimg, #creatorimg2{
             width: 200px;
-            height: 200px;
-            border: black 5px solid;
-        }
-        #creatorimg2{
-            width: 150px;
             height: 200px;
             border: black 5px solid;
         }

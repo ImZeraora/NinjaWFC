@@ -8,7 +8,7 @@ window.onload=function(){
     else{
 
     document.getElementById("creatorimg").addEventListener('click', ninjasound);
-    document.getElementById("creatorimg2").addEventListener('click', ninjasound);
+    document.getElementById("creatorimg2").addEventListener('click', oversound);
 
     }
 }
@@ -23,7 +23,7 @@ function ninjasound(){
 
 function oversound(){
 
-    audio=new Audio('gladiator.wav');
+    audio=new Audio('lucario.wav');
 
     audio.play();
 
@@ -76,8 +76,12 @@ function time(){
 
         document.getElementById("NinjaWFCTitle").innerHTML="ZeraoraWFC";
 
+        if(page=="index.html"){
         document.getElementById("newsp").innerHTML="If you are reading this, it means that the website has worked and you can now connect to ZeraoraWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
+        }
+        else{
 
+        }
     }
     else if(cmonth >= 5 && cmonth < 8){
 
@@ -95,8 +99,11 @@ function time(){
 
         document.getElementById("header").style.backgroundColor="RGB(56,20,96)";
 
+        if(page=="index.html"){
         document.getElementById("newsp").innerHTML="If you are reading this, it means that the website has worked and you can now connect to NinjaWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
-
+        }
+        else{
+        }
         document.getElementById("NinjaWFCTitle").innerHTML="NinjaWFC";
 
         document.getElementById("logo-home").src="logo.png";
