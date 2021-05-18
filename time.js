@@ -1,21 +1,29 @@
 window.onload=function(){
+    time();
 
-    if(page=="index.html" || page=="codes.html"){
+    if(page=="index.html" || page=="codes.html" || page=="stats.html"){
 
     }
 
     else{
 
-    document.getElementById("creatorimg").addEventListener('click', ninjasound)
+    document.getElementById("creatorimg").addEventListener('click', ninjasound);
+    document.getElementById("creatorimg2").addEventListener('click', ninjasound);
 
     }
-    
-    time();
 }
 
 function ninjasound(){
 
-    audio=new Audio('gladiator.wav')
+    audio=new Audio('gladiator.wav');
+
+    audio.play();
+
+}
+
+function oversound(){
+
+    audio=new Audio('gladiator.wav');
 
     audio.play();
 
