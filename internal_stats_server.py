@@ -48,7 +48,7 @@ class StatsPage(resource.Resource):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NinjaWFC</title>
-    <link rel="icon" href="https://ibb.co/VLBKtG6">
+    <link rel="icon" href="https://i.ibb.co/GMK2Zst/logo.png">
     </head>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap');
@@ -254,7 +254,7 @@ class StatsPage(resource.Resource):
 
             document.getElementById("NinjaWFCTitle").innerHTML = "NinjaWFC";
 
-            document.getElementById("logo-home").src = "logo.png";
+            document.getElementById("logo-home").src = "https://i.ibb.co/GMK2Zst/logo.png";
 
         }
     }
