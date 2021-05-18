@@ -48,7 +48,7 @@ class StatsPage(resource.Resource):
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NinjaWFC</title>
-    <link rel="icon" href="favicon.png">
+    <link rel="icon" href="https://ibb.co/VLBKtG6">
     </head>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap');
@@ -140,13 +140,13 @@ class StatsPage(resource.Resource):
         <center>
             <h2 id="NinjaWFCTitle"><a href="http://www.ninjawfc.com/" id="nocolorlinks">NinjaWFC</a></h2>
         </center>
-        <a href="http://www.ninjawfc.com/"><img src="logo.png" id="logo-home"></a>
-        <p id="time">Time cannot be found!</p>
+        <a href="http://www.ninjawfc.com/"><img src="https://i.ibb.co/GMK2Zst/logo.png" id="logo-home"></a>
+        <p id="time">Offline</p>
         <center>
             <ul id="nav">
-                <li id="nav1"><a href="index.html" id="nocolorlinks">Home Page</li></a>
-                <li id="nav1"><a href="creator.html" id="nocolorlinks">Creators and Supporters</li></a>
-                <li id="nav1"><a href="codes.html" id="nocolorlinks">Codes</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/index.html" id="nocolorlinks">Home Page</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/creator.html" id="nocolorlinks">Creators and Supporters</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/codes.html" id="nocolorlinks">Codes</li></a>
             </ul>
         </center>
     </header>
@@ -229,7 +229,7 @@ class StatsPage(resource.Resource):
 
         if (cmonth == 4 && cdate == 14) {
 
-            document.getElementById("logo-home").src = "Zeraoralogo.png";
+            document.getElementById("logo-home").src="https://i.bb.co/X4RJ4y6/Zeraoralogo.png";
 
             document.getElementById("header").style.backgroundColor = "RGB(246,211,134)";
 

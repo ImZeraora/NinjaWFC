@@ -70,7 +70,7 @@ function time(){
 
     if(cmonth==4 && cdate==14){
 
-        document.getElementById("logo-home").src="Zeraoralogo.png";
+        document.getElementById("logo-home").src="https://i.bb.co/X4RJ4y6/Zeraoralogo.png";
 
         document.getElementById("header").style.backgroundColor="RGB(246,211,134)";
 
