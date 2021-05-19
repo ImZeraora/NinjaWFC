@@ -46,7 +46,11 @@ class StatsPage(resource.Resource):
     header = """<html>
     <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NinjaWFC, A online replacement for Nintendo Wi-Fi Connection.">
+    <meta name="keywords" content="Wi-Fi, Mario Kart Wii, NinjaWFC">
+    <meta name="author" content="TheNinjaKingOW">
     <title>NinjaWFC</title>
     <link rel="icon" href="https://i.ibb.co/GMK2Zst/logo.png">
     </head>
@@ -147,6 +151,7 @@ class StatsPage(resource.Resource):
                 <li id="nav1"><a href="http://www.ninjawfc.com/index.html" id="nocolorlinks">Home Page</li></a>
                 <li id="nav1"><a href="http://www.ninjawfc.com/creator.html" id="nocolorlinks">Creators and Supporters</li></a>
                 <li id="nav1"><a href="http://www.ninjawfc.com/codes.html" id="nocolorlinks">Codes</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/error.html" id="nocolorlinks">Error Codes</li></a>
             </ul>
         </center>
     </header>
