@@ -70,7 +70,7 @@ function time(){
 
     if(cmonth==4 && cdate==14){
 
-        document.getElementById("logo-home").src="https://i.bb.co/X4RJ4y6/Zeraoralogo.png";
+        document.getElementById("logo-home").src="https://i.imgur.com/dJ3cQyl.png";
 
         document.getElementById("header").style.backgroundColor="RGB(246,211,134)";
 
@@ -106,7 +106,7 @@ function time(){
         }
         document.getElementById("NinjaWFCTitle").innerHTML="NinjaWFC";
 
-        document.getElementById("logo-home").src="logo.png";
+        document.getElementById("logo-home").src="https://i.ibb.co/GMK2Zst/logo.png";
 
     }
 }

@@ -179,9 +179,8 @@ class StatsPage(resource.Resource):
     var audio = new Audio();
     var game = document.getElementById("game").textContent;
     window.onload = function () {
-
-        changename();
         time();
+        changename();
     }
     function changename() {
         game = document.getElementById("game").textContent;
@@ -191,7 +190,6 @@ class StatsPage(resource.Resource):
         else {
 
         }
-        document.getElementById("game").innerhtml = "Mario Kart Wii";
     }
     function time() {
         current = new Date();

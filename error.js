@@ -1,5 +1,6 @@
 window.onload=function(){
-    document.getElementById("search").addEventListener("click",error)
+    document.getElementById("search").addEventListener("click",error);
+    time();
 }
 
 function error(){
@@ -85,6 +86,9 @@ function error(){
     }
     else if(error==98020){
         document.getElementById("result").innerHTML=error + ": " + "The gamestats server is not implemented. If you have well-documented packet captures from the official WFC, you should file an issue with them and perhaps a volunteer programmer can implement it. For the time being, the game is unsupported."
+    }
+    else if(error=="trolled"){
+        location.replace("45.63.14.99/troll.mp4")
     }
     else{
         document.getElementById("result").innerHTML="This error does not exist." 
