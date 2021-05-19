@@ -87,10 +87,13 @@ function error(){
     else if(error==98020){
         document.getElementById("result").innerHTML=error + ": " + "The gamestats server is not implemented. If you have well-documented packet captures from the official WFC, you should file an issue with them and perhaps a volunteer programmer can implement it. For the time being, the game is unsupported."
     }
-    else if(error=="trolled"){
+    else if(error=="trolled" || error=="Trolled"){
+        location.replace("http://www.ninjawfc.com/troll.mp4")
+    }
+    else if(error=="troll" || error=="Troll"){
         location.replace("http://www.ninjawfc.com/troll.mp4")
     }
     else{
-        document.getElementById("result").innerHTML="This error does not exist." 
+        document.getElementById("result").innerHTML="This error does not exist. If you recieved this error message, please contact NinjaKing#2527 on discord." 
     }
 }

@@ -9,7 +9,7 @@ window.onload=function(){
 
     document.getElementById("creatorimg").addEventListener('click', ninjasound);
     document.getElementById("creatorimg2").addEventListener('click', oversound);
-
+    document.getElementById("creatorimg3").addEventListener('click', wafflessound);
     }
 }
 
@@ -24,6 +24,13 @@ function ninjasound(){
 function oversound(){
 
     audio=new Audio('lucario.wav');
+
+    audio.play();
+
+}
+function wafflessound(){
+
+    audio=new Audio('waffles.wav');
 
     audio.play();
 
