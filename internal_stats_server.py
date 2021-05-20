@@ -177,13 +177,11 @@ class StatsPage(resource.Resource):
     var cdate = current.getDate();
     var timeam = "am";
     var audio = new Audio();
-    var game = document.getElementById("game").textContent;
     window.onload = function () {
         time();
         changename();
     }
     function changename() {
-        game = document.getElementById("game").textContent;
         if (document.getElementById("game").textContent == "mariokartwii") {
             document.getElementById("game").textContent = "Mario Kart Wii";
         }
