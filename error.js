@@ -93,6 +93,14 @@ function error(){
     else if(error=="troll" || error=="Troll"){
         location.replace("http://www.ninjawfc.com/troll.mp4")
     }
+    else if(error=="guns" || error=="Guns"){
+        audio=new Audio('guns.wav');
+        audio.play();
+        document.getElementById("body").className="wrapper";
+        document.getElementById("eastereggfnf1").style.display="block";
+        document.getElementById("eastereggfnf2").style.display="block";
+        document.getElementById("eastereggfnf3").style.display="block";
+    }
     else{
         document.getElementById("result").innerHTML="This error does not exist. If you recieved this error message, please contact NinjaKing#2527 on discord." 
     }
