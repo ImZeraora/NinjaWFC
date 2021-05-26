@@ -87,7 +87,7 @@
             list-style: none;
             margin-top: 50px;
         }
-        #news{
+        #news, #tutorialheader{
             text-align: center;
             margin-top: 225px;
         }
