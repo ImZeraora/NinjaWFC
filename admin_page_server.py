@@ -208,11 +208,12 @@ class AdminPage(resource.Resource):
         """ % (title,
                '<a href="/banhammer">All Users</a>',
                '<a href="/consoles">Consoles</a>',
-               '<a href="/banlist">Active Bans</a></center>')
+               '<a href="/banlist">Active Bans</a>')
         return s
 
     def get_footer(self):
         s = """
+        </center>
         <script>
     var current = new Date();
     var chours = current.getHours();
