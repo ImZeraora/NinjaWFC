@@ -43,7 +43,7 @@
             padding: 15px;
         }
 
-        #creator{
+        #creator, #error{
             margin-top: 250px;
             text-align: center;
         }
@@ -87,11 +87,8 @@
             list-style: none;
             margin-top: 50px;
         }
-        #news, #tutorialheader{
+        #news, #tutorialheader, #codeheader{
             text-align: center;
-            margin-top: 225px;
-        }
-        #codeheader{
             margin-top: 225px;
         }
         #ninjawfccode{
@@ -228,10 +225,6 @@
               transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
             }
           }
-          #news{
-            text-align: center;
-            margin-top: 225px;
-        }
         #creatorimg, #creatorimg3{
             width: 200px;
             height: 200px;
@@ -244,10 +237,6 @@
         }
         #creatorname{
             text-decoration: black underline;
-        }
-        #error{
-            margin-top: 250px;
-            text-align: center;
         }
         .wrapper { 
           height: 100%;
@@ -303,4 +292,18 @@
           position: absolute;
           top: 564px;
           left: 1200px;
+        }
+        #featurelist{
+          list-style: none;
+          text-align: center;
+        }
+        @keyframes headerslide{
+          0% {opacity: 0%; position: absolute; top:-210px;}
+          25% {opacity: 25%;}
+          50% {opacity: 50%;}
+          75% {opacity: 75%;}
+          100%{opacity: 100%; position: absolute; top: 0px;}
+        }
+        .headerslide{
+          animation: headerslide 1.5s linear 1;
         }

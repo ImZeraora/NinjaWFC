@@ -139,6 +139,16 @@ class StatsPage(resource.Resource):
             list-style: none;
             margin-top: 50px;
         }
+        @keyframes headerslide{
+          0% {opacity: 0%; position: absolute; top:-210px;}
+          25% {opacity: 25%;}
+          50% {opacity: 50%;}
+          75% {opacity: 75%;}
+          100%{opacity: 100%; position: absolute; top: 0px;}
+        }
+        .headerslide{
+          animation: headerslide 1.5s linear 1;
+        }
     </style>
     <header id="header">
         <center>
@@ -179,6 +189,7 @@ class StatsPage(resource.Resource):
     var timeam = "am";
     var audio = new Audio();
     window.onload = function () {
+        document.getElementById("header").className="headerslide";
         time();
         changename();
     }

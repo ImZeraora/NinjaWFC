@@ -1,4 +1,6 @@
 window.onload=function(){
+    document.getElementById("header").className="headerslide";
+
     time();
 
     if(page=="index.html" || page=="codes.html"){
@@ -88,6 +90,7 @@ function time(){
     chours=current.getHours();
 
     cmin=current.getMinutes();
+    cdate=current.Date
 
     if(chours > 12){
 
@@ -138,6 +141,10 @@ function time(){
     }
     else if(cmonth >= 5 && cmonth < 8){
 
+        document.getElementById("header").style.backgroundColor="RGB(255,168,7)";
+
+    }
+    else if(cmonth == 5 && cdate == 18 ){
         document.getElementById("header").style.backgroundColor="RGB(255,168,7)";
 
     }
