@@ -25,6 +25,7 @@
             width: 100%;
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
+            opacity: 0%;
         }
 
         #NinjaWFCTitle {
@@ -306,4 +307,5 @@
         }
         .headerslide{
           animation: headerslide 1.5s linear 1;
+          animation-fill-mode: forwards;
         }

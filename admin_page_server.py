@@ -72,7 +72,7 @@ class AdminPage(resource.Resource):
 
     def get_header(self, title=None):
         if not title:
-            title = 'NInjaWFC Admin Page'
+            title = 'NinjaWFC Admin Page'
         s = """
         <html>
         <head>
@@ -82,8 +82,8 @@ class AdminPage(resource.Resource):
     <meta name="description" content="NinjaWFC, A online replacement for Nintendo Wi-Fi Connection.">
     <meta name="keywords" content="Wi-Fi, Mario Kart Wii, NinjaWFC">
     <meta name="author" content="TheNinjaKingOW">
-    <title>NinjaWFC</title>
-    <link rel="icon" href="https://i.ibb.co/GMK2Zst/logo.png">
+            <title>%s</title>
+        <link rel="icon" href="https://i.ibb.co/GMK2Zst/logo.png">
     </head>
     <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap');
@@ -113,6 +113,7 @@ class AdminPage(resource.Resource):
             width: 100%;
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
+            opacity: 0%;
         }
 
         #NinjaWFCTitle {
@@ -131,7 +132,7 @@ class AdminPage(resource.Resource):
             padding: 15px;
         }
 
-        #consoleheader{
+        #statstable{
             margin-top: 250px;
             text-align: center;
         }
@@ -170,19 +171,140 @@ class AdminPage(resource.Resource):
             list-style: none;
             margin-top: 50px;
         }
+        @keyframes headerslide{
+          0% {opacity: 0%; position: absolute; top:-210px;}
+          25% {opacity: 25%;}
+          50% {opacity: 50%;}
+          75% {opacity: 75%;}
+          100%{opacity: 100%; position: absolute; top: 0px;}
+        }
+        .headerslide{
+          animation: headerslide 1.5s linear 1;
+          animation-fill-mode: forwards;
+        }
     </style>
-        <body>
-            <p id="consoleheader">
+    <body>
+        <header id="header">
+        <center>
+            <h2 id="NinjaWFCTitle"><a href="http://www.ninjawfc.com/" id="nocolorlinks">NinjaWFC</a></h2>
+        </center>
+        <a href="http://www.ninjawfc.com/"><img src="https://i.ibb.co/GMK2Zst/logo.png" id="logo-home"></a>
+        <p id="time">Offline</p>
+        <center>
+            <ul id="nav">
+                <li id="nav1"><a href="http://www.ninjawfc.com/index.html" id="nocolorlinks">Home Page</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/creator.html" id="nocolorlinks">Creators and Supporters</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/codes.html" id="nocolorlinks">Codes</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com:9001" id="nocolorlinks">Stats</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/error.html" id="nocolorlinks">Error Codes</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com/tutorial.html" id="nocolorlinks">Tutorial</li></a>
+            </ul>
+        </center>
+    </header>
+    <center>
+            <p>
                 %s | %s | %s
             </p>
         """ % (title,
                '<a href="/banhammer">All Users</a>',
                '<a href="/consoles">Consoles</a>',
-               '<a href="/banlist">Active Bans</a>')
+               '<a href="/banlist">Active Bans</a></center>')
         return s
 
     def get_footer(self):
         s = """
+        <script>
+    var current = new Date();
+    var chours = current.getHours();
+    var cmin = current.getMinutes();
+    var cmonth = current.getMonth();
+    var cdate = current.getDate();
+    var timeam = "am";
+    var audio = new Audio();
+    window.onload = function () {
+        document.getElementById("header").className="headerslide";
+        time();
+        changename();
+    }
+    function changename() {
+        if (document.getElementById("game").textContent == "mariokartwii") {
+            document.getElementById("game").textContent = "Mario Kart Wii";
+        }
+        else {
+
+        }
+    }
+    function time() {
+        current = new Date();
+
+        chours = current.getHours();
+
+        cmin = current.getMinutes();
+
+        if (chours > 12) {
+
+            chours = chours - 12;
+
+            timeam = "pm"
+
+        }
+
+        else {
+
+        }
+
+        if (cmin <= 9) {
+
+            document.getElementById("time").innerHTML = chours + ":" + "0" + cmin + timeam;
+
+        }
+
+        else {
+
+            document.getElementById("time").innerHTML = chours + ":" + cmin + timeam;
+
+        }
+
+
+
+        setInterval(function () {
+
+            time()
+
+        }, 60000);
+
+        if (cmonth == 4 && cdate == 14) {
+
+            document.getElementById("logo-home").src="https://i.bb.co/X4RJ4y6/Zeraoralogo.png";
+
+            document.getElementById("header").style.backgroundColor = "RGB(246,211,134)";
+
+            document.getElementById("NinjaWFCTitle").innerHTML = "ZeraoraWFC";
+
+        }
+        else if (cmonth >= 5 && cmonth < 8) {
+
+            document.getElementById("header").style.backgroundColor = "RGB(255,168,7)";
+
+        }
+
+        else if (cmonth == 11) {
+
+            document.getElementById("header").className = "christmas";
+
+        }
+
+        else {
+
+            document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
+
+            document.getElementById("NinjaWFCTitle").innerHTML = "NinjaWFC";
+
+            document.getElementById("logo-home").src = "https://i.ibb.co/GMK2Zst/logo.png";
+
+        }
+    }
+    </script>
         </body>
         </html>
         """
@@ -309,11 +431,11 @@ class AdminPage(resource.Resource):
         dbconn = sqlite3.connect('gpcm.db')
         logger.log(logging.INFO, "%s Viewed banlist", address)
         responsedata = """
-        <a href="http://%%20:%%20@%s">Log Out</a>
+        <a href="http://%%20:%%20@%s">[CLICK HERE TO LOG OUT]</a>
         <table border='1'>
         <tr>
-            <td>Game ID</td>
-            <td>IP Address</td>
+            <td>gameid</td>
+            <td>ipAddr</td>
         </tr>""" % (request.getHeader('host'))
 
         for row in dbconn.cursor().execute("SELECT * FROM banned"):
@@ -368,13 +490,13 @@ class AdminPage(resource.Resource):
         <br><br>
         <table border='1'>"
         <tr>
-            <td>In Game SN or Dev Name</td>
-            <td>Game ID</td>
+            <td>ingamesn or devname</td>
+            <td>gameid</td>
             <td>Enabled</td>
-            <td>Newest DWC_PID</td>"
-            <td>GSBRCD</td>
-            <td>User ID</td>
-            <td>IP Address/td>
+            <td>newest dwc_pid</td>"
+            <td>gsbrcd</td>
+            <td>userid</td>
+            <td>ipAddr</td>
         </tr>""" % request.getHeader('host')
 
         for row in dbconn.cursor().execute(sqlstatement):
@@ -491,7 +613,7 @@ class AdminPage(resource.Resource):
         logger.log(logging.INFO, "%s Viewed console list", address)
         responsedata = (
             '<a href="http://%20:%20@' + request.getHeader('host') +
-            '">Log Out</a>'
+            '">[CLICK HERE TO LOG OUT]</a>'
             "<form action='updateconsolelist' method='POST'>"
             "macadr:<input type='text' name='macadr'>\r\n"
             "<input type='hidden' name='action' value='add'>\r\n"
@@ -541,13 +663,13 @@ class AdminPage(resource.Resource):
         title = None
         response = ''
         if request.path == "/banlist":
-            title = 'AltWfc Banned Users'
+            title = 'NinjaWFC Banned Users'
             response = self.render_banlist(request)
         elif request.path == "/banhammer":
-            title = 'AltWfc Users'
+            title = 'NinjaWFC Users'
             response = self.render_blacklist(request)
         elif request.path == "/consoles":
-            title = "AltWfc Console List"
+            title = "NinjaWFC Console List"
             response = self.render_consolelist(request)
         return self.get_header(title) + response + self.get_footer()
 

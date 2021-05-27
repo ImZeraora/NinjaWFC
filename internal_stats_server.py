@@ -82,6 +82,7 @@ class StatsPage(resource.Resource):
             width: 100%;
             border-bottom-left-radius: 25px;
             border-bottom-right-radius: 25px;
+            opacity: 0%;
         }
 
         #NinjaWFCTitle {
@@ -148,6 +149,7 @@ class StatsPage(resource.Resource):
         }
         .headerslide{
           animation: headerslide 1.5s linear 1;
+          animation-fill-mode: forwards;
         }
     </style>
     <header id="header">
@@ -163,6 +165,7 @@ class StatsPage(resource.Resource):
                 <li id="nav1"><a href="http://www.ninjawfc.com/codes.html" id="nocolorlinks">Codes</li></a>
                 <li id="nav1"><a href="http://www.ninjawfc.com/error.html" id="nocolorlinks">Error Codes</li></a>
                 <li id="nav1"><a href="http://www.ninjawfc.com/tutorial.html" id="nocolorlinks">Tutorial</li></a>
+                <li id="nav1"><a href="http://www.ninjawfc.com:9009" id="nocolorlinks">Log In</li></a>
             </ul>
         </center>
     </header>
