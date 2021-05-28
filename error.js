@@ -1,5 +1,6 @@
 window.onload=function(){
     document.getElementById("search").addEventListener("click",error);
+    document.getElementById("header").className="headerslide";
     time();
 }
 
