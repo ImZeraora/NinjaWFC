@@ -102,6 +102,15 @@ function error(){
         document.getElementById("eastereggfnf2").style.display="block";
         document.getElementById("eastereggfnf3").style.display="block";
     }
+    else if(error=="sus"||error=="Sus"){
+        location.replace("https://www.youtube.com/watch?v=3rGA_FYNplg")
+    }
+    else if(error=="SUS"){
+        location.replace("https://www.youtube.com/watch?v=3rGA_FYNplg")
+    }
+    else if(error=="Polish Cow" || error=="polish cow"){
+        location.replace("https://www.youtube.com/watch?v=d82rvx2Hk-U")
+    }
     else{
         document.getElementById("result").innerHTML="This error does not exist. If you recieved this error message, please contact NinjaKing#2527 on discord." 
     }
