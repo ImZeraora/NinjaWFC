@@ -451,7 +451,6 @@ class StatsPage(resource.Resource):
     <br>
     <p>This page was last updated: %s</p><br>
     <center>
-    <img src="" id="monthimg">
     <script>
     var current = new Date();
     var chours = current.getHours();
@@ -597,16 +596,12 @@ function time() {
     }
     else if (cmonth >= 5 && cmonth < 8) {
         document.getElementById("header").style.backgroundColor = "RGB(255,168,7)";
-        document.getElementById("monthimg").style.display="block";
-        document.getElementById("monthimg").src="PalmTree.gif";
     }
     else if(cmonth==9){
         document.getElementById("header").style.backgroundColor = "RGB(235,97,35)";
         document.getElementById("body").style.backgroundColor = "black";
         document.getElementById("body").style.color = "white";
         document.getElementById("time").style.color = "black";
-        document.getElementById("monthimg").style.display="block";
-        document.getElementById("monthimg").src="HalloweenPumpkin.gif";
     }
     else if (cmonth == 11) {
 
