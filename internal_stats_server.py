@@ -360,13 +360,6 @@ function time() {
         document.getElementById("header").style.backgroundColor = "RGB(246,211,134)";
 
         document.getElementById("NinjaWFCTitle").innerHTML = "ZeraoraWFC";
-
-        if (page == "index.html") {
-            document.getElementById("newsp").innerHTML = "If you are reading this, it means that the website has worked and you can now connect to ZeraoraWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
-        }
-        else {
-
-        }
     }
     else if (cmonth >= 5 && cmonth < 8) {
         document.getElementById("header").style.backgroundColor = "RGB(255,168,7)";
