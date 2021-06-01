@@ -106,7 +106,7 @@ class StatsPage(resource.Resource):
             text-align: center;
         }
 
-        #nav1{
+        #nav1,#nav2,#nav3,#nav4,#nav5,#nav6, #nav7{
             border-radius: 25px;
             background: #ffffff;
             padding: 20px;
@@ -227,6 +227,7 @@ class StatsPage(resource.Resource):
     var cdate = current.getDate();
     var timeam = "am";
     var audio = new Audio();
+    var page="stats.html"
     window.onload = function () {
     document.getElementById("header").className = "headerslide";
 
