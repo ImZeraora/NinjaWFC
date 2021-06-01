@@ -102,7 +102,7 @@ class StatsPage(resource.Resource):
             display: block;
         }
 
-        #creator, #error{
+        #creator, #error, #statstable{
             margin-top: 250px;
             text-align: center;
         }
