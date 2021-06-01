@@ -151,6 +151,30 @@ class StatsPage(resource.Resource):
           animation: headerslide 1.5s linear 1;
           animation-fill-mode: forwards;
         }
+        @media screen and (max-width: 918px) {
+        #monthimg{
+          position: absolute;
+          bottom: 0%;
+          right: 0%;
+          width: 0px;
+          height: 0px;
+          display: none;
+        }
+        #logo-home {
+          width: 0%;
+          position: absolute;
+          top: 15px;
+          left: 100px;
+      }
+      #videoshowcase{
+        display:none;
+      }
+      #nav1,#nav2,#nav3,#nav5,#nav6,#nav7{
+        border-radius: 25px;
+        background: #ffffff;
+        padding: 20px;
+        display: none;
+    }
     </style>
     <header id="header">
         <center>
@@ -160,12 +184,12 @@ class StatsPage(resource.Resource):
         <p id="time">Offline</p>
         <center>
             <ul id="nav">
-                <li id="nav1"><a href="http://www.ninjawfc.com/index.html" id="nocolorlinks">Home Page</li></a>
-                <li id="nav1"><a href="http://www.ninjawfc.com/creator.html" id="nocolorlinks">Creators and Supporters</li></a>
-                <li id="nav1"><a href="http://www.ninjawfc.com/codes.html" id="nocolorlinks">Codes</li></a>
-                <li id="nav1"><a href="http://www.ninjawfc.com/error.html" id="nocolorlinks">Error Codes</li></a>
-                <li id="nav1"><a href="http://www.ninjawfc.com/tutorial.html" id="nocolorlinks">Tutorial</li></a>
-                <li id="nav1"><a href="http://www.ninjawfc.com:9009" id="nocolorlinks">Log In</li></a>
+                <li id="nav4"><a href="http://www.ninjawfc.com/index.html" id="nocolorlinks">Home Page</li></a>
+                <li id="nav2"><a href="http://www.ninjawfc.com/creator.html" id="nocolorlinks">Creators and Supporters</li></a>
+                <li id="nav3"><a href="http://www.ninjawfc.com/codes.html" id="nocolorlinks">Codes</li></a>
+                <li id="nav5"><a href="http://www.ninjawfc.com/error.html" id="nocolorlinks">Error Codes</li></a>
+                <li id="nav6"><a href="http://www.ninjawfc.com/tutorial.html" id="nocolorlinks">Tutorial</li></a>
+                <li id="nav7"><a href="http://www.ninjawfc.com:9009" id="nocolorlinks">Log In</li></a>
             </ul>
         </center>
     </header>
