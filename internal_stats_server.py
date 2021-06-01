@@ -99,9 +99,10 @@ class StatsPage(resource.Resource):
             border-radius: 25px;
             background: #ffffff;
             padding: 15px;
+            display: block;
         }
 
-        #statstable{
+        #creator, #error{
             margin-top: 250px;
             text-align: center;
         }
@@ -132,6 +133,11 @@ class StatsPage(resource.Resource):
             width: 98.9%;
             border-right: red 11px solid;
         }
+        #creatorimg{
+            width: 200px;
+            height: 200px;
+            border: black 5px solid;
+        }
         #creatorname{
             text-decoration: black underline;
         }
@@ -139,6 +145,216 @@ class StatsPage(resource.Resource):
             text-align: center;
             list-style: none;
             margin-top: 50px;
+        }
+        #news, #tutorialheader, #codeheader{
+            text-align: center;
+            margin-top: 225px;
+        }
+        #ninjawfccode{
+            border-radius: 25px;
+            background: #ffffff;
+            border: black 3px solid;
+            padding: 20px;
+            width: 400px;   
+        }
+        .button.alternative {
+            --color-hover: #2B3044;
+            --background: #362A89;
+            --hover-back: #6D58FF;
+            --hover-front: #F6F8FF;
+          }
+          .button {
+            --color: #fff;
+            --color-hover: var(--color);
+            --background: #2B3044;
+            --background-hover: var(--background);
+            --hover-back: #6D58FF;
+            --hover-front: #5C86FF;
+            padding: 8px 28px;
+            border-radius: 20px;
+            line-height: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            border: none;
+            outline: none;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            color: var(--c, var(--color));
+            background: var(--b, var(--background));
+            transition: color 0.2s linear var(--c-d, 0.2s), background 0.3s linear var(--b-d, 0.2s);
+          }
+          .button:not(.simple):before, .button:not(.simple):after {
+            content: "";
+            position: absolute;
+            background: var(--pb, var(--hover-back));
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200%;
+            border-radius: var(--br, 40%);
+            transform: translateY(var(--y, 50%));
+            transition: transform var(--d, 0.4s) ease-in var(--d-d, 0s), border-radius 0.5s ease var(--br-d, 0.08s);
+          }
+          .button:not(.simple):after {
+            --pb: var(--hover-front);
+            --d: .44s;
+          }
+          .button div {
+            z-index: 1;
+            position: relative;
+            display: flex;
+          }
+          .button div span {
+            display: block;
+            -webkit-backface-visibility: hidden;
+                    backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-animation: var(--name, none) 0.7s linear forwards 0.18s;
+                    animation: var(--name, none) 0.7s linear forwards 0.18s;
+          }
+          .button.in {
+            --name: move;
+          }
+          .button.in:not(.out) {
+            --c: var(--color-hover);
+            --b: var(--background-hover);
+          }
+          .button.in:not(.out):before, .button.in:not(.out):after {
+            --y: 0;
+            --br: 5%;
+          }
+          .button.in:not(.out):after {
+            --br: 10%;
+            --d-d: .02s;
+          }
+          .button.in.out {
+            --name: move-out;
+          }
+          .button.in.out:before {
+            --d-d: .06s;
+          }
+          
+          @-webkit-keyframes move {
+            30%, 36% {
+              transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
+            }
+            50% {
+              transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
+            }
+            70% {
+              transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
+            }
+          }
+          
+          @keyframes move {
+            30%, 36% {
+              transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
+            }
+            50% {
+              transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
+            }
+            70% {
+              transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
+            }
+          }
+          @-webkit-keyframes move-out {
+            30%, 36% {
+              transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
+            }
+            50% {
+              transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
+            }
+            70% {
+              transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
+            }
+          }
+          @keyframes move-out {
+            30%, 36% {
+              transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
+            }
+            50% {
+              transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
+            }
+            70% {
+              transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
+            }
+          }
+        #creatorimg, #creatorimg3{
+            width: 200px;
+            height: 200px;
+            border: black 5px solid;
+        }
+        #creatorimg2{
+            width: 150px;
+            height: 200px;
+            border: black 5px solid;
+        }
+        #creatorname{
+            text-decoration: black underline;
+        }
+        .wrapper { 
+          height: 100%;
+          width: 100%;
+        background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+        background-size: 1800% 1800%;
+        
+        -webkit-animation: rainbow 18s ease infinite;
+        -z-animation: rainbow 18s ease infinite;
+        -o-animation: rainbow 18s ease infinite;
+          animation: rainbow 18s ease infinite;}
+        
+        @-webkit-keyframes rainbow {
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+        @-moz-keyframes rainbow {
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+        @-o-keyframes rainbow {
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+        @keyframes rainbow { 
+            0%{background-position:0% 82%}
+            50%{background-position:100% 19%}
+            100%{background-position:0% 82%}
+        }
+        #eastereggfnf1{
+          display: none;
+          width: 150px;
+          height: 213px;
+          position: absolute;
+          top: 500px;
+          left: 580px;
+        }
+        #eastereggfnf2{
+          display: none;
+          width: 450px;
+          height: 320px;
+          position: absolute;
+          top: 388px;
+          left: 750px;
+        }
+        #eastereggfnf3{
+          display: none;
+          width: 150px;
+          height: 147px;
+          position: absolute;
+          top: 564px;
+          left: 1200px;
+        }
+        #featurelist{
+          list-style: none;
+          text-align: center;
         }
         @keyframes headerslide{
           0% {opacity: 0%; position: absolute; top:-210px;}
@@ -164,7 +380,7 @@ class StatsPage(resource.Resource):
         }
         @media screen and (max-width: 918px) {
         #monthimg{
-          position: absolute;
+          position: fixed;
           bottom: 0%;
           right: 0%;
           width: 0px;
@@ -172,13 +388,13 @@ class StatsPage(resource.Resource):
           display: none;
         }
         #logo-home {
-          width: 0%;
+          width: 15%;
           position: absolute;
-          top: 15px;
-          left: 100px;
+          top: 100px;
+          left: 25px;
       }
       #videoshowcase{
-        display:none;
+        display: none;
       }
       #nav1,#nav2,#nav3,#nav5,#nav6,#nav7{
         border-radius: 25px;
@@ -186,6 +402,23 @@ class StatsPage(resource.Resource):
         padding: 20px;
         display: none;
     }
+    #nav4{
+            border-radius: 25px;
+            background: #ffffff;
+            padding: 20px;
+            display: inline;
+            position: absolute;
+            top: 125px;
+            left: 150px;
+            
+    }
+    #time{
+      display: block;
+      position: absolute;
+      top: 125px;
+      right: 25px;
+    }
+  }
     </style>
     <header id="header">
         <center>
