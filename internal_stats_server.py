@@ -151,6 +151,17 @@ class StatsPage(resource.Resource):
           animation: headerslide 1.5s linear 1;
           animation-fill-mode: forwards;
         }
+        #monthimg{
+          position: fixed;
+          bottom: 0%;
+          right: 0%;
+          width: 250px;
+          height: 250px;
+          display: none;
+        }
+        #videoshowcase{
+          display: block;
+        }
         @media screen and (max-width: 918px) {
         #monthimg{
           position: absolute;
