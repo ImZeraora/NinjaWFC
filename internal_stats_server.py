@@ -92,6 +92,17 @@ class StatsPage(resource.Resource):
             width: 200px;
         }
 
+        #NinjaWFCForm{
+            border-radius: 25px;
+            background: #ffffff;
+            padding: 20px;
+            width: 200px;
+            right: 50px;
+            top: 106px;
+            position: absolute;
+            text-align: center;
+          }
+
         #time{
             top: 0px;
             right: 50px;
@@ -102,7 +113,7 @@ class StatsPage(resource.Resource):
             display: block;
         }
 
-        #creator, #error, #statstable{
+        #creator, #error{
             margin-top: 250px;
             text-align: center;
         }
@@ -378,7 +389,7 @@ class StatsPage(resource.Resource):
         #videoshowcase{
           display: block;
         }
-        @media screen and (max-width: 918px) {
+        @media screen and (max-width: 1440px) {
         #monthimg{
           position: fixed;
           bottom: 0%;
@@ -388,7 +399,7 @@ class StatsPage(resource.Resource):
           display: none;
         }
         #logo-home {
-          width: 15%;
+          width: 50px;
           position: absolute;
           top: 100px;
           left: 25px;
@@ -396,7 +407,7 @@ class StatsPage(resource.Resource):
       #videoshowcase{
         display: none;
       }
-      #nav1,#nav2,#nav3,#nav5,#nav6,#nav7{
+      #nav1,#nav2,#nav3,#nav5,#nav6,#nav7, #NinjaWFCForm{
         border-radius: 25px;
         background: #ffffff;
         padding: 20px;
@@ -436,6 +447,7 @@ class StatsPage(resource.Resource):
                 <li id="nav7"><a href="http://www.ninjawfc.com:9009" id="nocolorlinks">Log In</li></a>
             </ul>
         </center>
+        <p id="NinjaWFCForm"><a href="https://forms.gle/DSQSFC7Rs6H41Fyp9" id="nocolorlinks">Requests?</a></p>
     </header>
     <center>
     <table border='1' id="statstable">
