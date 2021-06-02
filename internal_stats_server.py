@@ -431,6 +431,7 @@ class StatsPage(resource.Resource):
     }
   }
     </style>
+    <body>
     <header id="header">
         <center>
             <h2 id="NinjaWFCTitle"><a href="http://www.ninjawfc.com/" id="nocolorlinks">NinjaWFC</a></h2>
@@ -634,6 +635,7 @@ function time() {
     }
 }
     </script>
+    </body>
     </html>"""  # % (self.stats.get_last_update_time())
 
     def __init__(self, stats):
