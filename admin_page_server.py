@@ -80,9 +80,9 @@ class AdminPage(resource.Resource):
             <script>
                 window.onload=function(){
                     if(document.getElementById("game").innerHTML == "RMCJ"){
+                    document.getElementById("game").innerHTML = "Mario Kart Wii";
                     }
                     else{
-                        document.getElementById("game").innerHTML = "Mario Kart Wii";
                     }
                 }
                 </script>
