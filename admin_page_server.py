@@ -77,6 +77,15 @@ class AdminPage(resource.Resource):
         <html>
         <head>
             <title>%s</title>
+            <script>
+                window.onload=function(){
+                    if(document.getElementById("game").innerHTML == "RMCJ"){
+                    }
+                    else{
+                        document.getElementById("game").innerHTML = "Mario Kart Wii";
+                    }
+                }
+                </script>
         </head>
         <body>
             <p>
@@ -433,17 +442,7 @@ class AdminPage(resource.Resource):
                     </form>
                     </td>
                 </tr>
-                <script>
-                <script>
-                window.onload=function(){
-                    if(document.getElementById("game").innerHTML == "RMCJ"){
-
-                    }
-                    else{
-                        document.getElementById("game").innerHTML = "Mario Kart Wii";
-                    }
-                }
-                </script>""""" % (macadr, macadr)
+                """"" % (macadr, macadr)
         responsedata += "</table>"
         dbconn.close()
         request.setHeader("Content-Type", "text/html; charset=utf-8")
