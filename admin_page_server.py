@@ -77,15 +77,6 @@ class AdminPage(resource.Resource):
         <html>
         <head>
             <title>%s</title>
-            <script>
-                window.onload=function(){
-                    if(document.getElementById("game").innerHTML == "RMCJ"){
-                    document.getElementById("game").innerHTML = "Mario Kart Wii";
-                    }
-                    else{
-                    }
-                }
-                </script>
         </head>
         <body>
             <p>
@@ -100,6 +91,15 @@ class AdminPage(resource.Resource):
     def get_footer(self):
         s = """
         </body>
+        <script>
+                window.onload=function(){
+                    if(document.getElementById("game").innerHTML == "RMCJ"){
+                        document.getElementById("game").innerHTML = "Mario Kart Wii";
+                    }
+                    else{
+                    }
+                }
+                </script>
         </html>
         """
         return s
