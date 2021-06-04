@@ -561,14 +561,19 @@ function wafflessound() {
 
 function time() {
 
-  if(document.getElementById("game").innerHTML=="mariokartwii"){
-    document.getElementById("game").innerHTML="Mario Kart Wii";
+  if (document.getElementById("game")) {
+    if (document.getElementById("game").innerHTML == "mariokartwii") {
+      document.getElementById("game").innerHTML = "Mario Kart Wii";
+    }
+    else if (document.getElementById("game").innerHTML == "mariokartds") {
+      document.getElementById("game").innerHTML = "Mario Kart DS";
+    }
+    else {
+
+    }
   }
-  else if(document.getElementById("game").innerHTML=="mariokartds"){
-    document.getElementById("game").innerHTML="Mario Kart DS";
-  }
-  else{
-      
+  else {
+
   }
     current = new Date();
 
