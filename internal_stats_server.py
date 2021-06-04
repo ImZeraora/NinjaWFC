@@ -560,6 +560,16 @@ function wafflessound() {
 }
 
 function time() {
+
+  if(document.getElementById("game").innerHTML=="mariokartwii"){
+    document.getElementById("game").innerHTML="Mario Kart Wii";
+  }
+  else if(document.getElementById("game").innerHTML=="mariokartds"){
+    document.getElementById("game").innerHTML="Mario Kart DS";
+  }
+  else{
+      
+  }
     current = new Date();
 
     chours = current.getHours();
