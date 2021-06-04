@@ -229,7 +229,7 @@ class AdminPage(resource.Resource):
             # TODO: Use .format()/positional arguments
             responsedata += """
             <tr>
-                <td>%s</td>
+                <td id="game">%s</td>
                 <td>%s</td>
                 <td>
                 <form action='updatebanlist' method='POST'>
@@ -309,7 +309,7 @@ class AdminPage(resource.Resource):
             responsedata += """
             <tr>
                 <td>%s</td>
-                <td>%s</td>
+                <td id="game">%s</td>
                 <td>%s</td>
                 <td>%s</td>
                 <td>%s</td>
@@ -432,7 +432,18 @@ class AdminPage(resource.Resource):
                         <input type='submit' value='Activate console'>
                     </form>
                     </td>
-                </tr>""" % (macadr, macadr)
+                </tr>
+                <script>
+                <script>
+                window.onload=function(){
+                    if(document.getElementById("game").innerHTML == "RMCJ"){
+
+                    }
+                    else{
+                        document.getElementById("game").innerHTML = "Mario Kart Wii";
+                    }
+                }
+                </script>""""" % (macadr, macadr)
         responsedata += "</table>"
         dbconn.close()
         request.setHeader("Content-Type", "text/html; charset=utf-8")
