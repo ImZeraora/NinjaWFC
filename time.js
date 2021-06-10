@@ -92,11 +92,14 @@ function time() {
     cmin = current.getMinutes();
     cdate = current.Date
 
-    if (chours > 12) {
-
-        chours = chours - 12;
-
+    if (chours => 12) {
         timeam = "pm"
+        if(chours > 12){
+        chours = chours - 12;
+        }
+        else{
+
+        }
 
     }
 
