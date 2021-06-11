@@ -436,7 +436,7 @@ class StatsPage(resource.Resource):
         <center>
             <h2 id="NinjaWFCTitle"><a href="http://www.ninjawfc.com/" id="nocolorlinks">NinjaWFC</a></h2>
         </center>
-        <a href="http://www.ninjawfc.com/"><img src="https://i.ibb.co/GMK2Zst/logo.png" id="logo-home"></a>
+        <img src="https://i.ibb.co/GMK2Zst/logo.png" id="logo-home">
         <p id="time">Offline</p>
         <center>
             <ul id="nav">
@@ -474,6 +474,8 @@ class StatsPage(resource.Resource):
     var audio = new Audio();
     var page="stats.html"
     window.onload = function () {
+    document.getElementById("logo-home").addEventListener("click", defaulttheme);
+
     document.getElementById("header").className = "headerslide";
 
     time();
@@ -534,6 +536,22 @@ class StatsPage(resource.Resource):
         });
 
     });
+}
+
+function defaulttheme(){
+    document.getElementById("monthimg").src="";
+
+        document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
+
+        if (page == "index.html") {
+            document.getElementById("newsp").innerHTML = "If you are reading this, it means that the website has worked and you can now connect to NinjaWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
+        }
+        else {
+        }
+        document.getElementById("NinjaWFCTitle").innerHTML = "NinjaWFC";
+
+        document.getElementById("logo-home").src = "https://i.ibb.co/GMK2Zst/logo.png";
+
 }
 
 function ninjasound() {
