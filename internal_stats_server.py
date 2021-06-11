@@ -541,6 +541,8 @@ class StatsPage(resource.Resource):
 
 function defaulttheme(){
 
+        eventclear = 1;
+
         document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
         
         document.getElementById("NinjaWFCTitle").innerHTML = "NinjaWFC";
