@@ -600,17 +600,26 @@ function time() {
     cmin = current.getMinutes();
     cdate = current.Date
 
-    if (chours > 12) {
-
-        chours = chours - 12;
-
+    if(chours != 24){
+    if (chours >= 12) {
         timeam = "pm"
+        if(chours > 12){
+        chours = chours - 12;
+        }
+        else{
+
+        }
 
     }
 
     else {
-
+        timeam = "am"
     }
+}
+else{
+    timeam = "am"
+    chours = chours - 12;
+}
 
     if (cmin <= 9) {
 
@@ -630,8 +639,8 @@ function time() {
 
         time()
 
-    }, 60000);
-
+    }, 1000);
+    if (eventclear != 1){
     if (cmonth == 3 && cdate == 14) {
 
         document.getElementById("logo-home").src = "https://i.imgur.com/dJ3cQyl.png";
@@ -666,6 +675,10 @@ function time() {
         document.getElementById("logo-home").src = "https://i.ibb.co/GMK2Zst/logo.png";
 
     }
+    }
+    else{
+    
+}
 }
     </script>
     </body>

@@ -63,6 +63,7 @@ window.onload = function () {
 }
 
 function defaulttheme(){
+    eventclear = 1;
     document.getElementById("monthimg").src="";
 
         document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
@@ -109,8 +110,8 @@ function time() {
 
     cmin = current.getMinutes();
     cdate = current.Date
-
-    if (chours => 12) {
+    if(chours != 24){
+    if (chours >= 12) {
         timeam = "pm"
         if(chours > 12){
         chours = chours - 12;
@@ -122,9 +123,13 @@ function time() {
     }
 
     else {
-
+        timeam = "am"
     }
-
+}
+else{
+    timeam = "am"
+    chours = chours - 12;
+}
     if (cmin <= 9) {
 
         document.getElementById("time").innerHTML = chours + ":" + "0" + cmin + timeam;
@@ -145,6 +150,8 @@ function time() {
 
     }, 60000);
 
+
+    if (eventclear != 1){
     if (cmonth == 3 && cdate == 14) {
 
         document.getElementById("logo-home").src = "https://i.imgur.com/dJ3cQyl.png";
@@ -196,4 +203,8 @@ function time() {
         document.getElementById("monthimg").style.display="none";
 
     }
+}
+else{
+    
+}
 }
