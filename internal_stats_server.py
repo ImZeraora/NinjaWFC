@@ -540,7 +540,6 @@ class StatsPage(resource.Resource):
 }
 
 function defaulttheme(){
-    document.getElementById("monthimg").src="";
 
         document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
         
