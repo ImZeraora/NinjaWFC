@@ -472,7 +472,8 @@ class StatsPage(resource.Resource):
     var cdate = current.getDate();
     var timeam = "am";
     var audio = new Audio();
-    var page="stats.html"
+    var page="stats.html";
+    var eventclear = 0;
     window.onload = function () {
     document.getElementById("logo-home").addEventListener("click", defaulttheme);
 
