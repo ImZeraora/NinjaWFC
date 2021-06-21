@@ -109,7 +109,7 @@ function time() {
     chours = current.getHours();
 
     cmin = current.getMinutes();
-    cdate = current.Date
+    cdate = current.getDate();
     if(chours != 24){
     if (chours >= 12) {
         timeam = "pm"
