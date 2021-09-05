@@ -199,7 +199,7 @@ else{
         }
         document.getElementById("NinjaWFCTitle").innerHTML = "NinjaWFC";
 
-        document.getElementById("logo-home").src = "https://i.ibb.co/GMK2Zst/logo.png";
+        document.getElementById("logo-home").src = "logo.png";
         document.getElementById("monthimg").style.display="none";
 
     }
