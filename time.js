@@ -67,6 +67,8 @@ function defaulttheme(){
     document.getElementById("monthimg").src="";
 
         document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
+        document.getElementById("body").style.backgroundColor = "white";
+        document.getElementById("body").style.color = "black";
 
         if (page == "index.html") {
             document.getElementById("newsp").innerHTML = "If you are reading this, it means that the website has worked and you can now connect to NinjaWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
