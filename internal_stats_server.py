@@ -130,20 +130,6 @@ class StatsPage(resource.Resource):
             text-decoration: none;
             display:inline-block
         }
-
-        .christmas{
-            background: repeating-linear-gradient(
-            45deg,
-            white,
-            white 50px,
-            red 50px,
-            red 60px
-            
-            );
-            border: red 10px solid;
-            width: 98.9%;
-            border-right: red 11px solid;
-        }
         #creatorimg{
             width: 200px;
             height: 200px;
@@ -654,11 +640,6 @@ else{
         document.getElementById("body").style.backgroundColor = "black";
         document.getElementById("body").style.color = "white";
         document.getElementById("time").style.color = "black";
-    }
-    else if (cmonth == 11) {
-
-        document.getElementById("header").className = "christmas";
-
     }
 
     else {

@@ -182,11 +182,6 @@ else{
         document.getElementById("monthimg").style.display="block";
         document.getElementById("monthimg").src="HalloweenPumpkin.gif";
     }
-    else if (cmonth == 11) {
-
-        document.getElementById("header").className = "christmas";
-
-    }
 
     else {
 
