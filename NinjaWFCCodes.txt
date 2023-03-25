@@ -1,7 +1,34 @@
-If you are looking to simply patch NinjaWFC WITHOUT any security patches, This code is a region free code that will do that.
-
 If you need any assistance with accessing NinjaWFC.com, feel free to join the discord server! https://discord.gg/EanAERhdDv
 
+If you are looking to simply patch NinjaWFC WITHOUT any security patches, simply remove the C2 code within the code list. If you do not know/aren't an advanced user, simply use the code for
+your region inside of your gct file. (View the Tutorial tab inside to learn more info)
+
+If you are looking to add in additional security patches, please use the following links to add them in!
+
+No Disconnect on Countdown [_tZ]: https://mariokartwii.com/showthread.php?tid=2034
+Frameskip [Wiimmfi's Dev Team]: https://mariokartwii.com/showthread.php?tid=2033
+Experimental Impervious 2 [_tZ]: https://mariokartwii.com/showthread.php?tid=2031
+Anti Crush WW [_tZ]: https://mariokartwii.com/showthread.php?tid=2027
+Remove Nintendo VR Algorithm [Fishguy]: http://mkwii.com/showthread.php?tid=58
+No Disconnect [Bully]: https://mariokartwii.com/showthread.php?tid=55
+Force Room CC [XeR]: https://mariokartwii.com/showthread.php?tid=109
+Anti-Freeze from Blooper De-limiters [Luis]: http://mkwii.com/showthread.php?tid=264
+Anti-Freeze from POW De-limiters [Luis]: http://mkwii.com/showthread.php?tid=265
+Anti-Freeze from Shock De-imiters [Luis]: http://mkwii.com/showthread.php?tid=251
+Exception Recovery [Star]: http://mkwii.com/showthread.php?tid=1164
+Impervious [Hakua]: http://mkwii.com/showthread.php?tid=1687
+Invalid FC Anti-Freeze [MrBean35000vr]: http://mkwii.com/showthread.php?tid=1264
+Thwomp Anti-Freeze [MrBean35000vr]: http://mkwii.com/showthread.php?tid=1265
+
+If you want EVEN MORE security patches, use these as well!
+
+Client ID Spoofer [Vega]: http://mkwii.com/showthread.php?tid=840
+Summary: If you made a Mii on your Wii, your Client ID can be transformed into your MAC Address. Instead of making Miis on other Wiis, or on a computer program, it's easier run this code to protect yourself. When you launch the game with the code applied, all of your Mii faces on your licenses will be gone (this is normal), simply re-select w/e Mii you wanna play with. The next time you launch the game withOUT the code applied, the same effect re-occurs.
+
+Hide Your Wii ID on USER Packet [Vega]: http://mkwii.com/showthread.php?tid=821
+Summary: This will spoof your Wii ID only in the USER Packet/Record. It does NOT effect the Wii ID value during server login.
+
+NTSC-U
 C0000000 0000001A
 3C004E80 60000020
 900F0000 BFC1FFF8
@@ -44,29 +71,239 @@ C0000000 0000000E
 9C090001 3463FFFF
 4082FFF4 398C0001
 4200FFC0 4E800020
+C26555FC 00000019
+89250008 2C090010
+4C820020 89250009
+2C090000 4182000C
+28090028 4C820020
+8945000A 2C0A0000
+4182000C 280A0028
+4C820020 8905000B
+710700FB 41A2000C
+28080038 4C820020
+88E5000C 70EB007F
+4182000C 28070040
+4C820020 8965000D
+2C0B0000 41A20028
+280B00C0 4C820020
+7D254A14 7D295214
+7D294214 7D293A14
+A1290014 2C090002
+4C820020 8925000E
+712A00EF 4182000C
+28090008 4C820020
+8925000F 2C090000
+41820014 3929FFE8
+5529063E 280900E0
+4D810020 9421FFD0
+60000000 00000000
 
-If you are looking to add in addition security patches, please use the following links to add them in!
+PAL:
+C0000000 0000001A
+3C004E80 60000020
+900F0000 BFC1FFF8
+7FC802A6 48000019
+6E696E6A 61776663
+2E636F6D 00000000
+00000000 7D8802A6
+3960FFFF 386CFFFF
+8C030001 2C000000
+396B0001 4082FFF4
+3D408000 614A2FFF
+3D202E6E 6129696E
+3C00017F 6000CFFC
+7C0903A6 840A0001
+7C004800 40A20054
+7D435378 38ACFFFF
+7D7F5B78 8C050001
+9C030001 37FFFFFF
+4082FFF4 20AB0010
+38A50001 7C0518AE
+2C00002F 4182000C
+98030001 4800001C
+7CA51A14 38A5FFFF
+8C050001 9C030001
+2C000000 4082FFF4
+4200FFA4 7FC803A6
+BBC1FFF8 4E800020
+C0000000 0000000E
+3C004E80 60000020
+900F0000 3D808000
+618C3000 3C00017F
+6000CFFC 7C0903A6
+3D607474 616B7073
+800C0000 7C005800
+40A20034 394C0003
+392C0002 7D455378
+38600000 8C050001
+2C000000 38630001
+4082FFF4 8C0A0001
+9C090001 3463FFFF
+4082FFF4 398C0001
+4200FFC0 4E800020
+C2659A84 00000019
+89250008 2C090010
+4C820020 89250009
+2C090000 4182000C
+28090028 4C820020
+8945000A 2C0A0000
+4182000C 280A0028
+4C820020 8905000B
+710700FB 41A2000C
+28080038 4C820020
+88E5000C 70EB007F
+4182000C 28070040
+4C820020 8965000D
+2C0B0000 41A20028
+280B00C0 4C820020
+7D254A14 7D295214
+7D294214 7D293A14
+A1290014 2C090002
+4C820020 8925000E
+712A00EF 4182000C
+28090008 4C820020
+8925000F 2C090000
+41820014 3929FFE8
+5529063E 280900E0
+4D810020 9421FFD0
+60000000 00000000
 
-RCE Packet Validation [Seeky, Star]: https://mariokartwii.com/showthread.php?tid=1854
-No Disconnect on Countdown [_tZ]: https://mariokartwii.com/showthread.php?tid=2034
-Frameskip [Wiimmfi's Dev Team]: https://mariokartwii.com/showthread.php?tid=2033
-Experimental Impervious 2 [_tZ]: https://mariokartwii.com/showthread.php?tid=2031
-Anti Crush WW [_tZ]: https://mariokartwii.com/showthread.php?tid=2027
-Remove Nintendo VR Algorithm [Fishguy]: http://mkwii.com/showthread.php?tid=58
-No Disconnect [Bully]: https://mariokartwii.com/showthread.php?tid=55
-Force Room CC [XeR]: https://mariokartwii.com/showthread.php?tid=109
-Anti-Freeze from Blooper De-limiters [Luis]: http://mkwii.com/showthread.php?tid=264
-Anti-Freeze from POW De-limiters [Luis]: http://mkwii.com/showthread.php?tid=265
-Anti-Freeze from Shock De-imiters [Luis]: http://mkwii.com/showthread.php?tid=251
-Exception Recovery [Star]: http://mkwii.com/showthread.php?tid=1164
-Impervious [Hakua]: http://mkwii.com/showthread.php?tid=1687
-Invalid FC Anti-Freeze [MrBean35000vr]: http://mkwii.com/showthread.php?tid=1264
-Thwomp Anti-Freeze [MrBean35000vr]: http://mkwii.com/showthread.php?tid=1265
+NTSC-J:
+C0000000 0000001A
+3C004E80 60000020
+900F0000 BFC1FFF8
+7FC802A6 48000019
+6E696E6A 61776663
+2E636F6D 00000000
+00000000 7D8802A6
+3960FFFF 386CFFFF
+8C030001 2C000000
+396B0001 4082FFF4
+3D408000 614A2FFF
+3D202E6E 6129696E
+3C00017F 6000CFFC
+7C0903A6 840A0001
+7C004800 40A20054
+7D435378 38ACFFFF
+7D7F5B78 8C050001
+9C030001 37FFFFFF
+4082FFF4 20AB0010
+38A50001 7C0518AE
+2C00002F 4182000C
+98030001 4800001C
+7CA51A14 38A5FFFF
+8C050001 9C030001
+2C000000 4082FFF4
+4200FFA4 7FC803A6
+BBC1FFF8 4E800020
+C0000000 0000000E
+3C004E80 60000020
+900F0000 3D808000
+618C3000 3C00017F
+6000CFFC 7C0903A6
+3D607474 616B7073
+800C0000 7C005800
+40A20034 394C0003
+392C0002 7D455378
+38600000 8C050001
+2C000000 38630001
+4082FFF4 8C0A0001
+9C090001 3463FFFF
+4082FFF4 398C0001
+4200FFC0 4E800020
+C26590F0 00000019
+89250008 2C090010
+4C820020 89250009
+2C090000 4182000C
+28090028 4C820020
+8945000A 2C0A0000
+4182000C 280A0028
+4C820020 8905000B
+710700FB 41A2000C
+28080038 4C820020
+88E5000C 70EB007F
+4182000C 28070040
+4C820020 8965000D
+2C0B0000 41A20028
+280B00C0 4C820020
+7D254A14 7D295214
+7D294214 7D293A14
+A1290014 2C090002
+4C820020 8925000E
+712A00EF 4182000C
+28090008 4C820020
+8925000F 2C090000
+41820014 3929FFE8
+5529063E 280900E0
+4D810020 9421FFD0
+60000000 00000000
 
-If you want EVEN MORE security patches, use these as well!
-
-Client ID Spoofer [Vega]: http://mkwii.com/showthread.php?tid=840
-Summary: If you made a Mii on your Wii, your Client ID can be transformed into your MAC Address. Instead of making Miis on other Wiis, or on a computer program, it's easier run this code to protect yourself. When you launch the game with the code applied, all of your Mii faces on your licenses will be gone (this is normal), simply re-select w/e Mii you wanna play with. The next time you launch the game withOUT the code applied, the same effect re-occurs.
-
-Hide Your Wii ID on USER Packet [Vega]: http://mkwii.com/showthread.php?tid=821
-Summary: This will spoof your Wii ID only in the USER Packet/Record. It does NOT effect the Wii ID value during server login.
+NTSC-K:
+C0000000 0000001A
+3C004E80 60000020
+900F0000 BFC1FFF8
+7FC802A6 48000019
+6E696E6A 61776663
+2E636F6D 00000000
+00000000 7D8802A6
+3960FFFF 386CFFFF
+8C030001 2C000000
+396B0001 4082FFF4
+3D408000 614A2FFF
+3D202E6E 6129696E
+3C00017F 6000CFFC
+7C0903A6 840A0001
+7C004800 40A20054
+7D435378 38ACFFFF
+7D7F5B78 8C050001
+9C030001 37FFFFFF
+4082FFF4 20AB0010
+38A50001 7C0518AE
+2C00002F 4182000C
+98030001 4800001C
+7CA51A14 38A5FFFF
+8C050001 9C030001
+2C000000 4082FFF4
+4200FFA4 7FC803A6
+BBC1FFF8 4E800020
+C0000000 0000000E
+3C004E80 60000020
+900F0000 3D808000
+618C3000 3C00017F
+6000CFFC 7C0903A6
+3D607474 616B7073
+800C0000 7C005800
+40A20034 394C0003
+392C0002 7D455378
+38600000 8C050001
+2C000000 38630001
+4082FFF4 8C0A0001
+9C090001 3463FFFF
+4082FFF4 398C0001
+4200FFC0 4E800020
+C2647D9C 00000019
+89250008 2C090010
+4C820020 89250009
+2C090000 4182000C
+28090028 4C820020
+8945000A 2C0A0000
+4182000C 280A0028
+4C820020 8905000B
+710700FB 41A2000C
+28080038 4C820020
+88E5000C 70EB007F
+4182000C 28070040
+4C820020 8965000D
+2C0B0000 41A20028
+280B00C0 4C820020
+7D254A14 7D295214
+7D294214 7D293A14
+A1290014 2C090002
+4C820020 8925000E
+712A00EF 4182000C
+28090008 4C820020
+8925000F 2C090000
+41820014 3929FFE8
+5529063E 280900E0
+4D810020 9421FFD0
+60000000 00000000
