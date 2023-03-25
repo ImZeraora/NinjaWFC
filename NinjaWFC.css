@@ -1,375 +1,519 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap');
 
-        body {
-            font-family: 'Roboto Mono', monospace;
-            padding: 0;
-            margin: 0;
-            border: 0;
-        }
+body {
+  font-family: 'Roboto Mono', monospace;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
 
-        #logo-home {
-            width: 8%;
-            position: absolute;
-            top: 15px;
-            left: 100px;
-        }
+#logo-home {
+  width: 8%;
+  position: absolute;
+  top: 15px;
+  left: 100px;
+}
 
-        header {
-            background-color: RGB(56, 20, 96);
-            height: 200px;
-            padding: 0%;
-            margin: 0%;
-            border: 0%;
-            position: absolute;
-            top: 0%;
-            width: 100%;
-            border-bottom-left-radius: 25px;
-            border-bottom-right-radius: 25px;
-            opacity: 0%;
-        }
+header {
+  background-color: RGB(56, 20, 96);
+  height: 225px;
+  padding: 0%;
+  margin: 0%;
+  border: 0%;
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  opacity: 0%;
+}
 
-        #NinjaWFCTitle {
-            border-radius: 25px;
-            background: #ffffff;
-            padding: 20px;
-            width: 200px;
-        }
+#NinjaWFCTitle {
+  border-radius: 25px;
+  background: #ffffff;
+  padding: 20px;
+  width: 200px;
+}
 
-        #NinjaWFCForm{
-            border-radius: 25px;
-            background: #ffffff;
-            padding: 20px;
-            width: 200px;
-            right: 50px;
-            top: 106px;
-            position: absolute;
-            text-align: center;
-          }
+#NinjaWFCForm {
+  border-radius: 25px;
+  background: #ffffff;
+  padding: 20px;
+  width: 200px;
+  right: 50px;
+  top: 106px;
+  position: absolute;
+  text-align: center;
+}
 
-        #time{
-            top: 0px;
-            right: 50px;
-            position: absolute;
-            border-radius: 25px;
-            background: #ffffff;
-            padding: 15px;
-            display: block;
-        }
+#time {
+  top: 0px;
+  right: 50px;
+  position: absolute;
+  border-radius: 25px;
+  background: #ffffff;
+  padding: 15px;
+  display: block;
+}
 
-        #creator, #error{
-            margin-top: 250px;
-            text-align: center;
-        }
+#creator,
+#error {
+  margin-top: 250px;
+  text-align: center;
+}
 
-        #nav1,#nav2,#nav3,#nav4,#nav5,#nav6, #nav7{
-            border-radius: 25px;
-            background: #ffffff;
-            padding: 20px;
-            display: inline;
-        }
+#nav1,
+#nav2,
+#nav3,
+#nav4,
+#nav5,
+#nav6,
+#nav7 {
+  border-radius: 25px;
+  background: #ffffff;
+  padding: 20px;
+  display: inline;
+}
 
-        #nocolorlinks{
-            color: black;
-            text-decoration: none;
-            display:inline-block
-        }
+#nocolorlinks {
+  color: black;
+  text-decoration: none;
+  display: inline-block
+}
 
-        .christmas{
-            background: repeating-linear-gradient(
-            45deg,
-            white,
-            white 50px,
-            red 50px,
-            red 60px
-            
-            );
-            border: red 10px solid;
-            width: 98.9%;
-            border-right: red 11px solid;
-        }
-        #creatorimg{
-            width: 200px;
-            height: 200px;
-            border: black 5px solid;
-        }
-        #creatorname{
-            text-decoration: black underline;
-        }
-        #nav{
-            text-align: center;
-            list-style: none;
-            margin-top: 50px;
-        }
-        #news, #tutorialheader, #codeheader{
-            text-align: center;
-            margin-top: 225px;
-        }
-        #ninjawfccode{
-            border-radius: 25px;
-            background: #ffffff;
-            border: black 3px solid;
-            padding: 20px;
-            width: 400px;   
-        }
-        .button.alternative {
-            --color-hover: #2B3044;
-            --background: #362A89;
-            --hover-back: #6D58FF;
-            --hover-front: #F6F8FF;
-          }
-          .button {
-            --color: #fff;
-            --color-hover: var(--color);
-            --background: #2B3044;
-            --background-hover: var(--background);
-            --hover-back: #6D58FF;
-            --hover-front: #5C86FF;
-            padding: 8px 28px;
-            border-radius: 20px;
-            line-height: 24px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            border: none;
-            outline: none;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            -webkit-appearance: none;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-mask-image: -webkit-radial-gradient(white, black);
-            color: var(--c, var(--color));
-            background: var(--b, var(--background));
-            transition: color 0.2s linear var(--c-d, 0.2s), background 0.3s linear var(--b-d, 0.2s);
-          }
-          .button:not(.simple):before, .button:not(.simple):after {
-            content: "";
-            position: absolute;
-            background: var(--pb, var(--hover-back));
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 200%;
-            border-radius: var(--br, 40%);
-            transform: translateY(var(--y, 50%));
-            transition: transform var(--d, 0.4s) ease-in var(--d-d, 0s), border-radius 0.5s ease var(--br-d, 0.08s);
-          }
-          .button:not(.simple):after {
-            --pb: var(--hover-front);
-            --d: .44s;
-          }
-          .button div {
-            z-index: 1;
-            position: relative;
-            display: flex;
-          }
-          .button div span {
-            display: block;
-            -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-            transform: translateZ(0);
-            -webkit-animation: var(--name, none) 0.7s linear forwards 0.18s;
-                    animation: var(--name, none) 0.7s linear forwards 0.18s;
-          }
-          .button.in {
-            --name: move;
-          }
-          .button.in:not(.out) {
-            --c: var(--color-hover);
-            --b: var(--background-hover);
-          }
-          .button.in:not(.out):before, .button.in:not(.out):after {
-            --y: 0;
-            --br: 5%;
-          }
-          .button.in:not(.out):after {
-            --br: 10%;
-            --d-d: .02s;
-          }
-          .button.in.out {
-            --name: move-out;
-          }
-          .button.in.out:before {
-            --d-d: .06s;
-          }
-          
-          @-webkit-keyframes move {
-            30%, 36% {
-              transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
-            }
-            50% {
-              transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
-            }
-            70% {
-              transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
-            }
-          }
-          
-          @keyframes move {
-            30%, 36% {
-              transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
-            }
-            50% {
-              transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
-            }
-            70% {
-              transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
-            }
-          }
-          @-webkit-keyframes move-out {
-            30%, 36% {
-              transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
-            }
-            50% {
-              transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
-            }
-            70% {
-              transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
-            }
-          }
-          @keyframes move-out {
-            30%, 36% {
-              transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
-            }
-            50% {
-              transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
-            }
-            70% {
-              transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
-            }
-          }
-        #creatorimg, #creatorimg3{
-            width: 200px;
-            height: 200px;
-            border: black 5px solid;
-        }
-        #creatorimg2{
-            width: 150px;
-            height: 200px;
-            border: black 5px solid;
-        }
-        #creatorname{
-            text-decoration: black underline;
-        }
-        .wrapper { 
-          height: 100%;
-          width: 100%;
-        background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-        background-size: 1800% 1800%;
-        
-        -webkit-animation: rainbow 18s ease infinite;
-        -z-animation: rainbow 18s ease infinite;
-        -o-animation: rainbow 18s ease infinite;
-          animation: rainbow 18s ease infinite;}
-        
-        @-webkit-keyframes rainbow {
-            0%{background-position:0% 82%}
-            50%{background-position:100% 19%}
-            100%{background-position:0% 82%}
-        }
-        @-moz-keyframes rainbow {
-            0%{background-position:0% 82%}
-            50%{background-position:100% 19%}
-            100%{background-position:0% 82%}
-        }
-        @-o-keyframes rainbow {
-            0%{background-position:0% 82%}
-            50%{background-position:100% 19%}
-            100%{background-position:0% 82%}
-        }
-        @keyframes rainbow { 
-            0%{background-position:0% 82%}
-            50%{background-position:100% 19%}
-            100%{background-position:0% 82%}
-        }
-        #eastereggfnf1{
-          display: none;
-          width: 150px;
-          height: 213px;
-          position: absolute;
-          top: 500px;
-          left: 580px;
-        }
-        #eastereggfnf2{
-          display: none;
-          width: 450px;
-          height: 320px;
-          position: absolute;
-          top: 388px;
-          left: 750px;
-        }
-        #eastereggfnf3{
-          display: none;
-          width: 150px;
-          height: 147px;
-          position: absolute;
-          top: 564px;
-          left: 1200px;
-        }
-        #featurelist{
-          list-style: none;
-          text-align: center;
-        }
-        @keyframes headerslide{
-          0% {opacity: 0%; position: absolute; top:-210px;}
-          25% {opacity: 25%;}
-          50% {opacity: 50%;}
-          75% {opacity: 75%;}
-          100%{opacity: 100%; position: absolute; top: 0px;}
-        }
-        .headerslide{
-          animation: headerslide 1.5s linear 1;
-          animation-fill-mode: forwards;
-        }
-        #monthimg{
-          position: fixed;
-          bottom: 0%;
-          right: 0%;
-          width: 250px;
-          height: 250px;
-          display: none;
-        }
-        #videoshowcase{
-          display: block;
-        }
-        @media screen and (max-width: 1440px) {
-        #monthimg{
-          position: fixed;
-          bottom: 0%;
-          right: 0%;
-          width: 0px;
-          height: 0px;
-          display: none;
-        }
-        #logo-home {
-          width: 50px;
-          position: absolute;
-          top: 100px;
-          left: 25px;
-      }
-      #videoshowcase{
-        display: none;
-      }
-      #nav1,#nav2,#nav3,#nav5,#nav6,#nav7, #NinjaWFCForm{
-        border-radius: 25px;
-        background: #ffffff;
-        padding: 20px;
-        display: none;
-    }
-    #nav4{
-            border-radius: 25px;
-            background: #ffffff;
-            padding: 20px;
-            display: inline;
-            position: absolute;
-            top: 125px;
-            left: 150px;
-            
-    }
-    #time{
-      display: block;
-      position: absolute;
-      top: 125px;
-      right: 25px;
-    }
+.christmas {
+  background: repeating-linear-gradient(45deg,
+      white,
+      white 50px,
+      red 50px,
+      red 60px);
+  border: red 10px solid;
+  width: 98.9%;
+  border-right: red 11px solid;
+}
+
+#creatorimg {
+  width: 200px;
+  height: 200px;
+  border: black 5px solid;
+}
+
+#creatorname {
+  text-decoration: black underline;
+}
+
+#nav {
+  text-align: center;
+  list-style: none;
+  margin-top: 50px;
+}
+
+#discord {
+  text-align: center;
+  margin-top: 225px;
+}
+
+#discordLink {
+  background: #381460;
+  background-image: -webkit-linear-gradient(top, #381460, #000000);
+  background-image: -moz-linear-gradient(top, #381460, #000000);
+  background-image: -ms-linear-gradient(top, #381460, #000000);
+  background-image: -o-linear-gradient(top, #381460, #000000);
+  background-image: linear-gradient(to bottom, #381460, #000000);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+#news,
+#tutorialheader,
+#codeheader {
+  text-align: center;
+  margin-top: 0px;
+}
+
+#ninjawfccode {
+  border-radius: 25px;
+  background: #ffffff;
+  border: black 3px solid;
+  padding: 20px;
+  width: 400px;
+}
+
+.button.alternative {
+  --color-hover: #2B3044;
+  --background: #362A89;
+  --hover-back: #6D58FF;
+  --hover-front: #F6F8FF;
+}
+
+.button {
+  --color: #fff;
+  --color-hover: var(--color);
+  --background: #2B3044;
+  --background-hover: var(--background);
+  --hover-back: #6D58FF;
+  --hover-front: #5C86FF;
+  padding: 8px 28px;
+  border-radius: 20px;
+  line-height: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: none;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  color: var(--c, var(--color));
+  background: var(--b, var(--background));
+  transition: color 0.2s linear var(--c-d, 0.2s), background 0.3s linear var(--b-d, 0.2s);
+}
+
+.button:not(.simple):before,
+.button:not(.simple):after {
+  content: "";
+  position: absolute;
+  background: var(--pb, var(--hover-back));
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200%;
+  border-radius: var(--br, 40%);
+  transform: translateY(var(--y, 50%));
+  transition: transform var(--d, 0.4s) ease-in var(--d-d, 0s), border-radius 0.5s ease var(--br-d, 0.08s);
+}
+
+.button:not(.simple):after {
+  --pb: var(--hover-front);
+  --d: .44s;
+}
+
+.button div {
+  z-index: 1;
+  position: relative;
+  display: flex;
+}
+
+.button div span {
+  display: block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-animation: var(--name, none) 0.7s linear forwards 0.18s;
+  animation: var(--name, none) 0.7s linear forwards 0.18s;
+}
+
+.button.in {
+  --name: move;
+}
+
+.button.in:not(.out) {
+  --c: var(--color-hover);
+  --b: var(--background-hover);
+}
+
+.button.in:not(.out):before,
+.button.in:not(.out):after {
+  --y: 0;
+  --br: 5%;
+}
+
+.button.in:not(.out):after {
+  --br: 10%;
+  --d-d: .02s;
+}
+
+.button.in.out {
+  --name: move-out;
+}
+
+.button.in.out:before {
+  --d-d: .06s;
+}
+
+@-webkit-keyframes move {
+
+  30%,
+  36% {
+    transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
   }
+
+  50% {
+    transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
+  }
+
+  70% {
+    transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
+  }
+}
+
+@keyframes move {
+
+  30%,
+  36% {
+    transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
+  }
+
+  50% {
+    transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
+  }
+
+  70% {
+    transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
+  }
+}
+
+@-webkit-keyframes move-out {
+
+  30%,
+  36% {
+    transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
+  }
+
+  50% {
+    transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
+  }
+
+  70% {
+    transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
+  }
+}
+
+@keyframes move-out {
+
+  30%,
+  36% {
+    transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
+  }
+
+  50% {
+    transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
+  }
+
+  70% {
+    transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
+  }
+}
+
+#creatorimg,
+#creatorimg3 {
+  width: 200px;
+  height: 200px;
+  border: black 5px solid;
+}
+
+#creatorimg2 {
+  width: 150px;
+  height: 200px;
+  border: black 5px solid;
+}
+
+#creatorname {
+  text-decoration: black underline;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
+  background-size: 1800% 1800%;
+
+  -webkit-animation: rainbow 18s ease infinite;
+  -z-animation: rainbow 18s ease infinite;
+  -o-animation: rainbow 18s ease infinite;
+  animation: rainbow 18s ease infinite;
+}
+
+@-webkit-keyframes rainbow {
+  0% {
+    background-position: 0% 82%
+  }
+
+  50% {
+    background-position: 100% 19%
+  }
+
+  100% {
+    background-position: 0% 82%
+  }
+}
+
+@-moz-keyframes rainbow {
+  0% {
+    background-position: 0% 82%
+  }
+
+  50% {
+    background-position: 100% 19%
+  }
+
+  100% {
+    background-position: 0% 82%
+  }
+}
+
+@-o-keyframes rainbow {
+  0% {
+    background-position: 0% 82%
+  }
+
+  50% {
+    background-position: 100% 19%
+  }
+
+  100% {
+    background-position: 0% 82%
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% 82%
+  }
+
+  50% {
+    background-position: 100% 19%
+  }
+
+  100% {
+    background-position: 0% 82%
+  }
+}
+
+#eastereggfnf1 {
+  display: none;
+  width: 150px;
+  height: 213px;
+  position: absolute;
+  top: 500px;
+  left: 580px;
+}
+
+#eastereggfnf2 {
+  display: none;
+  width: 450px;
+  height: 320px;
+  position: absolute;
+  top: 388px;
+  left: 750px;
+}
+
+#eastereggfnf3 {
+  display: none;
+  width: 150px;
+  height: 147px;
+  position: absolute;
+  top: 564px;
+  left: 1200px;
+}
+
+#featurelist {
+  list-style: none;
+  text-align: center;
+}
+
+@keyframes headerslide {
+  0% {
+    opacity: 0%;
+    position: absolute;
+    top: -210px;
+  }
+
+  25% {
+    opacity: 25%;
+  }
+
+  50% {
+    opacity: 50%;
+  }
+
+  75% {
+    opacity: 75%;
+  }
+
+  100% {
+    opacity: 100%;
+    position: absolute;
+    top: 0px;
+  }
+}
+
+.headerslide {
+  animation: headerslide 1.5s linear 1;
+  animation-fill-mode: forwards;
+}
+
+#monthimg {
+  position: fixed;
+  bottom: 0%;
+  right: 0%;
+  width: 250px;
+  height: 250px;
+  display: none;
+}
+
+#videoshowcase {
+  display: block;
+}
+
+@media screen and (max-width: 1440px) {
+  #monthimg {
+    position: fixed;
+    bottom: 0%;
+    right: 0%;
+    width: 0px;
+    height: 0px;
+    display: none;
+  }
+
+  #logo-home {
+    width: 50px;
+    position: absolute;
+    top: 100px;
+    left: 25px;
+  }
+
+  #videoshowcase {
+    display: none;
+  }
+
+  #nav1,
+  #nav2,
+  #nav3,
+  #nav5,
+  #nav6,
+  #nav7,
+  #NinjaWFCForm {
+    border-radius: 25px;
+    background: #ffffff;
+    padding: 20px;
+    display: none;
+  }
+
+  #nav4 {
+    border-radius: 25px;
+    background: #ffffff;
+    padding: 20px;
+    display: inline;
+    position: absolute;
+    top: 125px;
+    left: 150px;
+
+  }
+
+  #time {
+    display: block;
+    position: absolute;
+    top: 125px;
+    right: 25px;
+  }
+}
