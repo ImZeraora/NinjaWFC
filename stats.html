@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,16 +7,15 @@
     <meta name="description" content="NinjaWFC, A online replacement for Nintendo Wi-Fi Connection.">
     <meta name="keywords" content="Wi-Fi, Mario Kart Wii, NinjaWFC">
     <meta name="author" content="TheNinjaKingOW">
-    <title>NinjaWFC</title>
     <link rel="icon" href="favicon.png">
     <link rel="stylesheet" href="NinjaWFC.css">
+    <title>NinjaWFC</title>
     <script>
-        var page = "codes.html";
+        var page = "index.html";
     </script>
     <script type="text/javascript" src="variables.js"></script>
     <script type="text/javascript" src="time.js"></script>
 </head>
-
 <body>
     <header id="header">
         <center>
@@ -26,22 +24,27 @@
         <img src="logo.png" id="logo-home">
         <p id="time">Time cannot be found!</p>
         <center>
-            <ul id="nav">
-                <li id="nav1"><a href="http://www.ninjawfc.com/index.html" id="nocolorlinks">Home Page</li></a>
-                <li id="nav2"><a href="http://www.ninjawfc.com/error.html" id="nocolorlinks">Error Codes</li></a>
-                <li id="nav3"><a href="http://www.ninjawfc.com/stats.html" id="nocolorlinks">MKW Stats</li></a>
-            </ul>
+            <div>
+                <ul id="nav">
+                    <li id="nav1"><a href="http://www.ninjawfc.com/index.html" id="nocolorlinks">Home Page</li></a>
+                    <li id="nav2"><a href="http://www.ninjawfc.com/error.html" id="nocolorlinks">Error Codes</li></a>
+                    <li id="nav3"><a href="http://www.ninjawfc.com/tutorial.html" id="nocolorlinks">Tutorial</li></a>
+                </ul>
+            </div>
         </center>
         <p id="NinjaWFCForm"><a href="https://forms.gle/DSQSFC7Rs6H41Fyp9" id="nocolorlinks">Requests?</a></p>
     </header>
-    <center>
-        <h2 id="codeheader">List of Game Codes</h2>
-        <p>This zip file contains a list of txt files that has gecko codes used to access NinjaWFC. Each txt file is named the GameID that the code would work for (A good example is RMCE01, which is the NTSC-U version of MKWii).</p>
-        <a id="nocolorlinks" href="http://ninjawfc.com/NinjaWFCCodes.zip">
-            <h3 id="ninjawfccode">Download Lists of Game Codes
-                to Access NinjaWFC</h3>
-        </a>
-    </center>
-</body>
 
+  <div class="container mt-5">
+    <h2 class="mb-4" id="tableStats">Mario Kart Wii Room Data</h2>
+    <div id="groupsContainer">
+      <!-- Tables for each group will be dynamically added here -->
+    </div>
+  </div>
+
+  <!-- Bootstrap JS for optional functionality -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Your custom JavaScript file -->
+  <script src="script.js"></script>
+</body>
 </html>

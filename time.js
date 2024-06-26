@@ -3,23 +3,6 @@ window.onload = function () {
     document.getElementById("logo-home").addEventListener("click", defaulttheme);
 
     time();
-
-    if (page == "index.html" || page == "codes.html") {
-
-    }
-    else if (page == "stats.html" || page == "error.html") {
-
-    }
-    else if (page == "tutorial.html") {
-
-    }
-
-    else {
-
-        document.getElementById("creatorimg").addEventListener('click', ninjasound);
-        document.getElementById("creatorimg2").addEventListener('click', oversound);
-        document.getElementById("creatorimg3").addEventListener('click', wafflessound);
-    }
     document.querySelectorAll('.button').forEach(button => {
 
         let div = document.createElement('div'),
@@ -82,28 +65,6 @@ function defaulttheme(){
         document.getElementById("monthimg").style.display="none";
 }
 
-function ninjasound() {
-
-    audio = new Audio('gladiator.wav');
-
-    audio.play();
-
-}
-
-function oversound() {
-
-    audio = new Audio('lucario.wav');
-
-    audio.play();
-
-}
-function wafflessound() {
-
-    audio = new Audio('waffles.wav');
-
-    audio.play();
-
-}
 
 function time() {
     current = new Date();
@@ -151,57 +112,4 @@ else{
         time()
 
     }, 60000);
-
-
-    if (eventclear != 1){
-    if (cmonth == 3 && cdate == 14) {
-
-        document.getElementById("logo-home").src = "https://i.imgur.com/dJ3cQyl.png";
-
-        document.getElementById("header").style.backgroundColor = "RGB(246,211,134)";
-
-        document.getElementById("NinjaWFCTitle").innerHTML = "ZeraoraWFC";
-
-        if (page == "index.html") {
-            document.getElementById("newsp").innerHTML = "If you are reading this, it means that the website has worked and you can now connect to ZeraoraWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
-        }
-        else {
-
-        }
-    }
-    else if (cmonth >= 5 && cmonth < 8) {
-        document.getElementById("header").style.backgroundColor = "RGB(255,168,7)";
-        document.getElementById("monthimg").style.display="block";
-        document.getElementById("monthimg").src="PalmTree.gif";
-    }
-    else if(cmonth==9){
-        document.getElementById("header").style.backgroundColor = "RGB(235,97,35)";
-        document.getElementById("body").style.backgroundColor = "black";
-        document.getElementById("body").style.color = "white";
-        document.getElementById("time").style.color = "black";
-        document.getElementById("monthimg").style.display="block";
-        document.getElementById("monthimg").src="HalloweenPumpkin.gif";
-    }
-
-    else {
-
-        document.getElementById("monthimg").src="";
-
-        document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
-
-        if (page == "index.html") {
-            document.getElementById("newsp").innerHTML = "If you are reading this, it means that the website has worked and you can now connect to NinjaWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
-        }
-        else {
-        }
-        document.getElementById("NinjaWFCTitle").innerHTML = "NinjaWFC";
-
-        document.getElementById("logo-home").src = "logo.png";
-        document.getElementById("monthimg").style.display="none";
-
-    }
-}
-else{
-    
-}
 }
