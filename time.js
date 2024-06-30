@@ -45,44 +45,34 @@ window.onload = function () {
     });
 }
 
-function time() {
-    current = new Date();
+function defaulttheme(){
+    eventclear = 1;
+    document.getElementById("monthimg").src="";
 
-    chours = current.getHours();
+        document.getElementById("header").style.backgroundColor = "RGB(56,20,96)";
+        document.getElementById("body").style.backgroundColor = "white";
+        document.getElementById("body").style.color = "black";
 
-    cmin = current.getMinutes();
-    cdate = current.getDate();
-    if(chours != 24){
-    if (chours >= 12) {
-        timeam = "pm"
-        if(chours > 12){
-        chours = chours - 12;
+        if (page == "index.html") {
+            document.getElementById("newsp").innerHTML = "If you are reading this, it means that the website has worked and you can now connect to NinjaWFC! The website will be \"completed\" by the end of June and will have features like, Being able to detect how many players are on the server with more advanced methods, interactive design, and possibly mobile support (more to come).";
         }
-        else{
-
+        else {
         }
+        document.getElementById("NinjaWFCTitle").innerHTML = "NinjaWFC";
 
-    }
+        document.getElementById("logo-home").src = "https://i.ibb.co/GMK2Zst/logo.png";
 
-    else {
-        timeam = "am"
-    }
+        document.getElementById("monthimg").style.display="none";
 }
-else{
-    timeam = "am"
-    chours = chours - 12;
+
+function time(){
+  var now = new Date();
+  var datetime = now.toLocaleString();
+
+  // Insert date and time into HTML
+  document.getElementById("timestamp").innerHTML = datetime;
 }
-    if (cmin <= 9) {
 
-        document.getElementById("time").innerHTML = chours + ":" + "0" + cmin + timeam;
-
-    }
-
-    else {
-
-        document.getElementById("time").innerHTML = chours + ":" + cmin + timeam;
-
-    }
 
 
 
@@ -90,5 +80,4 @@ else{
 
         time()
 
-    }, 60000);
-}
+    }, 1000);
