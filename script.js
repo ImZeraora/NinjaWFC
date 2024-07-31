@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
   const groupsContainer = document.getElementById('groupsContainer');
 
-  fetch('http://ninjawfc.com/api/groups?game=mariokartwii')
+  fetch('http://nas.ninjawfc.com/api/groups?game=mariokartwii')
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not ok');
