@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/mii-font.css">
+    <script src="md5.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>NewWFC MKW Management</title>
+    <link rel="icon" href="./../images/newwfc.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:type" content="NewWFC Webpage">
+    <meta property="og:title" content="NewWFC" />
+    <meta property="og:description" content="MKW Management!" />
+    <meta property="og:url" content="http://ninjawfc.com/mkw" />
+    <meta property="og:image" content="./../images/newwfc.png" />
+    <style>
+        body {
+            background-color: #424549;
+            color: white;
+            text-align: left;
+            font-size: 20px;
+        }
+
+        .mii-font-box {
+            background-color: #313233;
+            /* Slightly darker than the page background */
+            padding: 2px;
+            /* Adjust padding as needed */
+            border-radius: 4px;
+            /* Optional: Add rounded corners */
+            display: inline-block;
+            /* Make it an inline block to wrap the content */
+        }
+
+        .host {
+            background-color: #58595a;
+            /* Slightly darker than the page background */
+            padding: 2px;
+            /* Adjust padding as needed */
+            border-radius: 4px;
+            /* Optional: Add rounded corners */
+            display: inline-block;
+            /* Make it an inline block to wrap the content */
+        }
+
+        .guest {
+            background-color: #424549;
+            /* //1b1919 */
+            /* Slightly darker than the page background */
+            padding: 2px;
+            /* Adjust padding as needed */
+            border-radius: 4px;
+            /* Optional: Add rounded corners */
+            display: inline-block;
+            /* Make it an inline block to wrap the content */
+        }
+
+
+
+        .mii-font {
+            font-family: 'MiiFont', 'dcRoboto', san-serif;
+        }
+    </style>
+
+
+    <style>
+        body {
+            background-color: #424549;
+            color: white;
+            text-align: left;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h>Player Management | </h>
+   <button onclick="window.location.href='/mkw/admintools'" style="margin-bottom:18px;font-size:18px">Go Back</button>
+
+    <div id="passwordContainer">
+        <br>
+        <label for="passwordInput">Enter Password:</label>
+        <input type="password" id="passwordInput">
+        <input type="checkbox" id="passwordToggle">
+        <label for="passwordToggle">Show Password</label>
+        <button id="savePasswordBtn">Save Password</button>
+    </div>
+    
+    <label for="fcInput">Enter Friend Code:</label>
+    <input type="text" id="fcInput">
+    <button id="kickP">Kick Player</button>
+    <button id="kickTest">Test</button>
+    <!-- Result display area -->
+    <br>
+    <div style="margin-bottom: 10px;">
+        <label for="filterType">Filter by: </label>
+        <select id="filterType" onchange="applyFilter()">
+            <option value="all">All</option>
+            <option value="roomid">Room ID</option>
+            <option value="deluxe">Deluxe (rk = vs_760/bt_760)</option>
+            <option value="worldwides">WorldWides (rk = vs/bt/cd)</option>
+            <option value="legit">Legit (rk = vp/bp/cp)</option>
+            <option value="friendroom">Friend Rooms (type = private)</option>
+            <option value="custom">Custom Region</option>
+        </select>
+        <input type="text" id="filterValue" placeholder="Enter Room ID or Region" style="display:none;" oninput="applyFilter()">
+        <button id="clearRoomIdBtn" style="display:none; margin-left:4px;" onclick="clearRoomIdFilter()">Clear</button>
+    </div>
+    <div id="resultMessage"></div>
+    <br>
+    <div id="result"></div>
+    <script>
+        var protocol = window.location.protocol.startsWith("https") ? "https://" : "http://";
+
+        // Function to load saved password from localStorage
+        function loadSavedPassword() {
+            const savedPassword = localStorage.getItem("savedPassword");
+            if (savedPassword) {
+                document.getElementById("passwordInput").value = savedPassword;
+            }
+        }
+
+        // Function to save password to localStorage
+        function savePassword() {
+            const password = document.getElementById("passwordInput").value;
+            localStorage.setItem("savedPassword", password);
+        }
+
+        // Load saved password when the page loads
+        loadSavedPassword();
+
+        // Event listener for the "Save Password" button
+        document.getElementById("savePasswordBtn").addEventListener("click", function () {
+            savePassword();
+            alert("Password saved successfully!");
+        });
+
+        // Toggle password visibility
+        const passwordInput = document.getElementById("passwordInput");
+        const passwordToggle = document.getElementById("passwordToggle");
+        passwordToggle.addEventListener("change", function () {
+            if (passwordToggle.checked) {
+                passwordInput.type = "text";
+            } else {
+                passwordInput.type = "password";
+            }
+        });
+
+        // Event listener for the Kick button
+        document.addEventListener("DOMContentLoaded", function () {
+
+        document.addEventListener("click", function (event) {
+            if (event.target.classList.contains("kickBtn")) {
+                var pid = event.target.getAttribute("data-pid");
+                var password = document.getElementById("passwordInput").value;
+                kickButton("Kick", pid, password);
+            }
+            if (event.target.classList.contains("testBtn")) {
+                var pid = event.target.getAttribute("data-pid");
+                var password = document.getElementById("passwordInput").value;
+                testz("Kick", pid, password);
+            }
+            //var pid = fc_to_pid(players[playnum].fc);
+            if (event.target.id === "kickP") {
+                var fcInputValue = document.getElementById("fcInput").value;
+                var pid = fc_to_pid(fcInputValue);
+                var password = document.getElementById("passwordInput").value;
+                kickButton("Kick", pid, password);
+            }
+            // <button id="kickP">Kick Player</button>
+            // <button id="kickTest">Test</button>
+            if (event.target.id === "kickTest") {
+                var fcInputValue = document.getElementById("fcInput").value;
+                var pid = fc_to_pid(fcInputValue);
+                //var pid = event.target.getAttribute("fcInput");
+                var password = document.getElementById("passwordInput").value;
+                testz("Kick", pid, password);
+            }
+        });
+        console.log("DOM fully loaded.");
+    });
+
+        function kickButton(action, pid, password) {
+
+            var url = protocol + `76.143.129.153/api/kick?secret=${password}&pid=${pid}`;
+            fetch(url, { method: "POST" })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Kick action response:", data);
+                    document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+                })
+                .catch(error => {
+                    console.error("Error during kick action:", error);
+                    document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
+                });
+            updateStats()
+        }
+
+        function testz(action, pid, password) {
+            var url = protocol + `nas.ninjawfc.com/api/test?secret=${password}&pid=${pid}&type=payload`;
+            fetch(url, { method: "POST", mode: 'no-cors' })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Kick action response:", data);
+                    document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+                })
+                .catch(error => {
+                    console.error("Error during kick action:", error);
+                    document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
+                });
+            updateStats()
+        }
+
+        function fc_to_pid(fc) {
+            var fcInput = fc.replace(/-/g, ""); // Remove dashes
+            // Validate that the friend code is exactly 12 digits long and contains only numbers
+            if (fcInput.length !== 12 || !/^[0-9]+$/.test(fcInput)) {
+                console.error("Invalid friend code format!");
+                return null; // Return null or handle the error as needed
+            }
+            var fc = parseInt(fcInput);
+            // Convert the friend code to a player ID
+            return fc & 0xffffffff;
+        }
+
+
+
+        function rating(VR, BR) {
+
+            if (VR !== undefined && BR !== undefined) {
+                return "VR: " + VR + " BR: " + BR + " "
+            } else {
+                return ''
+
+            }
+        }
+
+        function regionz(html, item) {
+            var REGIONNAME = "";
+            var rk = item.rk.toString();
+            if (rk.length > 3 && rk.charAt(2) === "_" && regname.hasOwnProperty(rk.slice(3))) {
+                REGIONNAME = regname[rk.slice(3)] + " "
+                if (rk.startsWith("v")) {
+                    REGIONNAME += "Versus "
+                }
+                else if (rk.startsWith("b")) {
+                    REGIONNAME += "Battle "
+                }
+                else if (rk.startsWith("c")) {
+                    REGIONNAME += "Countdown "
+                }
+                else {
+                    REGIONNAME += "Unknown Type "
+                }
+                REGIONNAME += rk;
+            } else {
+                REGIONNAME = regname[rk] || "UNKNOWN REGION " + rk;
+            }
+
+
+            return REGIONNAME
+        }
+        function playerStats(html, item, players, count, items) {
+
+            var real = Object.keys(players)
+            //var filtered = items.filter()
+            var mappedItems = items.map(item => ({
+                [item.FC]: {
+                    dwc_pid: item.dwc_pid,
+                    FC: item.FC,
+                    ctgpver: item["+ctgpver"], // Corrected spelling of 'challange' to 'challenge'
+                    localplayers: item['+localplayers']
+                }
+            }));
+
+
+            for (var i = 0; i < count; i++) {
+                var playnum = real[i];
+                var host = "";
+                var host2 = "";
+                var CTGP = '';
+                var Spectating = '';
+                var pid = fc_to_pid(players[playnum].fc);
+                var kickButton = `<button class="kickBtn" data-pid="${pid}">Kick</button> <button class="testBtn" data-pid="${pid}">Test</button>`;
+
+                // Check if players[playnum].fc exists in mappedItems
+                if (mappedItems.some(mappedItem => mappedItem.hasOwnProperty(players[playnum].fc))) {
+                    var matchingItem = mappedItems.find(mappedItem => mappedItem.hasOwnProperty(players[playnum].fc));
+
+                    // Check if matchingItem has 'challange' property
+                    if (matchingItem && matchingItem[players[playnum].fc].ctgpver !== undefined) {
+                        CTGP = CTGPz(matchingItem[players[playnum].fc].ctgpver) //' [CTGP-R Channel]';
+                    }
+                    // Check if matchingItem has 'challange' property
+                    if (matchingItem && matchingItem[players[playnum].fc].localplayers == 0) {
+                        Spectating = ' [Spectating]';
+                    }
+
+
+
+                }
+
+                if (playnum === item.host) {
+                    host = '<span class="host">'
+                    host2 = '</span>'
+                }
+                else {
+                    host = '<span class="guest">'
+                    host2 = '</span>'
+                }
+
+
+                if (players[playnum].count == 2) {
+                    html += '<b>' + host + kickButton + players[playnum].fc + ' Name: <span class="mii-font-box"><span class="mii-font">' + (players[playnum].name === "" ? "NULL-NAME" : players[playnum].name) + '</span></span> ' + rating(players[playnum].ev, players[playnum].eb) + CTGP + host2 + Spectating + '</b><br>';
+                    html += '<b>' + host + players[playnum].fc + ' Name: <span class="mii-font-box"><span class="mii-font">' + "Guest" + '</span></span> ' + "VR: GUEST " + "BR: GUEST " + CTGP + host2 + Spectating + '</b><br>';
+                } else {
+                    html += '<b>' + host + kickButton + players[playnum].fc + ' Name: <span class="mii-font-box"><span class="mii-font">' + (players[playnum].name === "" ? "NULL-NAME" : players[playnum].name) + '</span></span> ' + rating(players[playnum].ev, players[playnum].eb) + CTGP + host2 + Spectating + '</b><br>';
+                }
+            }
+            html += "<br>"
+            return html
+        }
+
+
+
+        function suspend(suspend) {
+
+            if (suspend === false) {
+
+                return ""
+            }
+            if (suspend === true) {
+                return " | VOTING TRACKS"
+            }
+            return
+        }
+
+        function PlayerCount(numplayers) {
+
+            var players = parseInt(numplayers, 10);
+            if (isNaN(players)) {
+                players = 0; // Set players to 0 or handle the error case accordingly
+            }
+            if (players === 0) {
+                return "wot no players??" //"No players";
+            }
+            players = (players) | 0; // + 1) | 0; // Ensure the result stays within the 32-bit integer range
+            return players;//"Players: " + players;
+        }
+
+        function rktype(rk) {
+
+            var string = rk
+            if (rk === "vs") {
+                return "worldwide"
+            }
+            if (rk === "bt") {
+                return "battles"
+            }
+            if (rk.startsWith("vs_")) {
+                return "regionals versus #" + rk.split("_")[1];
+            }
+            if (rk.startsWith("bt_")) {
+                return "regionals battle #" + rk.split("_")[1];
+            }
+            if (rk.startsWith("cd_")) {
+                return "countdown, region #" + rk.split("_")[1];
+            }
+            return string
+        }
+
+        function CTGPz(ctgpver) {
+            if (ctgpver) {
+                if (ctgpver == "1031044") {
+                    return " [CTGP (dolphin) 2017]";
+                }
+                if (ctgpver.length == 8) {
+                    ctgpver = ctgpver[1] + "." + ctgpver.slice(2, 4) + "." + ctgpver.slice(4, 8)
+                    return " [CTGP-R " + ctgpver + "]"
+                }
+            }
+            else {
+                return "";
+            }
+            return "";
+        }
+
+        function isonline(html, items, count) {
+            for (var i = 0; i < count; i++) {
+                var pid = fc_to_pid(items[i].FC);
+                var kickButton = `<button class="kickBtn" data-pid="${pid}">Kick</button> <button class="testBtn" data-pid="${pid}">Test</button>`;
+                html += "<b> " + kickButton + items[i].FC + ' <span class="mii-font-box"><span class="mii-font"> ' + (items[i]["+name"] === "" ? "NULL-NAME" : items[i]["+name"]) + '</span></span>' + CTGPz(items[i]["+ctgpver"]) + ": is online<br><br>"
+            }
+            return html
+        }
+        function froomer(html, items, count) {
+            for (var i = 0; i < count; i++) {
+                var pid = fc_to_pid(items[i].FC);
+                var kickButton = `<button class="kickBtn" data-pid="${pid}">Kick</button> <button class="testBtn" data-pid="${pid}">Test</button>`;
+                html += "<b> " + kickButton + items[i].FC + CTGPz(items[i]["+ctgpver"])
+
+                if (items[i].dwc_groupid !== "0") {
+                    html += ' <span class="mii-font-box"><span class="mii-font">' + (items[i]["+name"] === "" ? "NULL-NAME" : items[i]["+name"]) + '</span></span>' + ": is hosting a Friend Room "
+                } else {
+                    html += ' <span class="mii-font-box"><span class="mii-font">' + (items[i]["+name"] === "" ? "NULL-NAME" : items[i]["+name"]) + '</span></span>' + ": in a hostless Friend Room " + (items[i].dwc_suspend === "1" ? "suspended" : "");
+                }
+                html += "<br>"
+            }
+            return html
+        }
+
+        function legacy(html, items, count) { 
+            for (var i = 0; i < count; i++) {
+                var pid = fc_to_pid(items[i].FC);
+                var kickButton = `<button class="kickBtn" data-pid="${pid}">Kick</button> <button class="testBtn" data-pid="${pid}">Test</button>`;
+                html += "<b> " + kickButton + items[i].FC + CTGPz(items[i]["+ctgpver"]) + ' <span class="mii-font-box"><span class="mii-font">' + (items[i]["+name"] === "" ? "NULL-NAME" : items[i]["+name"]) + '</span></span>' + ": Searching " + regionz(html, items[i]) + " VR: " + items[i].ev + ' BR: ' + items[i].eb + "</b><br><br>"; // rktype(items[i].rk)
+                //print("")
+                //if items[i].
+
+            }
+            return html
+
+        }
+
+        function regions(html, items, count, dwcjson) {
+
+            for (var i = 0; i < count; i++) {
+                var roomIdHtml = '<span class="roomid-highlight" style="cursor:pointer;color:#ffb347;text-decoration:underline;" onclick="setRoomIdFilter(\'' + items[i].id + '\')">' + items[i].id + '</span>';
+                if (items[i].type === "anybody") {
+
+                    html += "<b>Room ID: " + roomIdHtml + " " + "</b>: " + regionz(html, items[i]) + " " + "(Players: " + PlayerCount(Object.keys(items[i].players).length) + suspend(items[i].suspend) + ")<br><br>";
+
+                    //html = regionz(html, items[i])
+                }
+                if (items[i].type === "private") {
+                    html += "<b>Room ID: " + roomIdHtml + " " + "</b>: Friend Room " + " (Players: " + PlayerCount(Object.keys(items[i].players).length) + suspend(items[i].suspend) + ")<br><br>";
+                }
+                if (items[i].dwc_mtype === "0") {
+                    html += "<b>Room ID: " + roomIdHtml + " " + "</b>: Player is online <br><br>";
+                } else if (items[i].dwc_mtype === "2") {
+                    html += "<b>Room ID: " + roomIdHtml + " " + "</b>: Hosting a Friend Room (" + ")<br><br>";
+
+                } else if (items[i].dwc_mtype === "3") {
+                    html += "<b>Room ID: " + roomIdHtml + " " + "</b>: In a Friend Room (" + ")<br><br>";
+                } else {
+                    //html += "<b>Room ID: " + items[i].id + " " + "</b>: Player is not in a match<br><br>";
+                }
+
+
+                html = playerStats(html, items[i], items[i].players, Object.keys(items[i].players).length, dwcjson); //Object.keys(items[i].players), Object.keys(items[i].players).length,);
+                //////
+            }
+
+            return html;
+        }
+        function toggleInterval(checkbox) {
+            autoRefreshEnabled = checkbox.checked; // Update autoRefreshEnabled based on checkbox state
+            localStorage.setItem("autoRefreshEnabled", autoRefreshEnabled); // Save auto-refresh state to localStorage
+
+            if (autoRefreshEnabled) {
+                // Checkbox is checked, start the interval
+                intervalId = setInterval(updateStats, refreshInterval);
+            } else {
+                // Checkbox is unchecked, clear the interval
+                clearInterval(intervalId);
+                // Set intervalId to null to indicate that the interval is stopped
+                intervalId = null;
+            }
+        }
+
+
+
+        function changeInterval(select) {
+            // Get the selected refresh interval from the dropdown
+            refreshInterval = parseInt(select.value, 10);
+            // Save the selected refresh interval to localStorage
+            localStorage.setItem("refreshInterval", refreshInterval);
+            // If auto-refresh is enabled, restart the interval with the new interval
+            if (autoRefreshEnabled) {
+                clearInterval(intervalId);
+                intervalId = setInterval(updateStats, refreshInterval);
+            }
+        }
+
+
+        function updateStats() {
+
+
+            var xhr2 = new XMLHttpRequest();
+            //var protocol = window.location.protocol.startsWith("https") ? "https://" : "http://";
+            var url = protocol + "nas.ninjawfc.com/json";
+            xhr2.open("GET", url, true);
+            var xhr = new XMLHttpRequest();
+            //var protocol = window.location.protocol.startsWith("https") ? "https://" : "http://";
+            var url = protocol + "nas.ninjawfc.com/api/groups?game=mariokartwii";
+            xhr.open("GET", url, true);
+            xhr2.onreadystatechange = function () {
+                if (xhr2.readyState === XMLHttpRequest.DONE && xhr2.status === 200) {
+
+                    if (xhr2.responseText.trim() !== "") {
+                        try {
+                            apijson = JSON.parse(xhr2.responseText);
+                        } catch (error) {
+                            console.log("incomplete json?", error)
+                        }
+                    }
+                    //apijson = JSON.parse(xhr2.responseText) || [];
+                    try {
+                        xhr.send();
+                    } catch (error) {
+                        console.log("wot", error)
+                    }
+
+
+
+                }
+            }
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    var count = data ? data.length : 0;
+                    var items = data || [];
+                    dwcjson = apijson.mariokartwii || [];
+                    var online = dwcjson ? Object.keys(dwcjson).length : 0;
+                    var now = new Date();
+                    var hours = now.getHours();
+                    var minutes = now.getMinutes();
+                    var seconds = now.getSeconds();
+                    var meridiem = hours >= 12 ? 'PM' : 'AM';
+                    // Convert hours to 12-hour format
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // Handle midnight (0 hours)
+
+
+                    // Add leading zeros to minutes and seconds if they're less than 10
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+                    var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + meridiem;
+                    if (!autoRefreshEnabled) {
+                        html = '<button onclick="updateStats()">Refresh</button>' +
+                            '<label><input type="checkbox" unchecked onchange="toggleInterval(this)"> Auto Refresh every </label>';
+                    } else {
+                        html = '<button onclick="updateStats()">Refresh</button>' +
+                            '<label><input type="checkbox" checked onchange="toggleInterval(this)"> Auto Refresh every </label>';
+                    }
+
+                    html += '<select onchange="changeInterval(this)">' +
+                        //'<b> every ' + (refreshInterval / 1000) + ' seconds</b>' +
+                        '<option value="5000" ' + (refreshInterval === 5000 ? 'selected' : '') + '>5 seconds</option>' +
+                        '<option value="10000" ' + (refreshInterval === 10000 ? 'selected' : '') + '>10 seconds</option>' +
+                        '<option value="30000" ' + (refreshInterval === 30000 ? 'selected' : '') + '>30 seconds</option>' +
+                        '</select>' +
+
+                        "<b> | " + online + " players online | Current time: " + currentTime + "</b><br>";
+
+                    // html += "<b> | " + online + " players online </b><br>";
+
+                    if (count === 0) {
+                        html += "<br><b>There are no rooms currently:</b><br>";
+                    }
+
+                    //for (var i = 0; i < count; i++) {
+                    html += "<br> "//items[i].id + "<br>" //"<br><b>Room: " + items[i].id
+                    // Filter items based on filter UI
+                    if (currentFilterType === 'roomid') {
+                        if (currentFilterValue) {
+                            items = items.filter(function(item) { return item.id == currentFilterValue; });
+                        }
+                    } else if (currentFilterType === 'custom') {
+                        if (currentFilterValue) {
+                            var customRegion = currentFilterValue.replace(/[^0-9]/g, '');
+                            items = items.filter(function(item) {
+                                return new RegExp('_[0]*' + customRegion + '$').test(item.rk);
+                            });
+                        }
+                    } else if (currentFilterType === 'deluxe') {
+                        items = items.filter(function(item) {
+                            return item.rk === 'vs_760' || item.rk === 'bt_760' || item.rk === 'vp_760' || item.rk === 'bp_760' ||
+                                   item.rk === 'vs_866' || item.rk === 'bt_866' || item.rk === 'vp_866' || item.rk === 'bp_866';
+                        });
+                    } else if (currentFilterType === 'worldwides') {
+                        items = items.filter(function(item) { return item.rk === 'vs' || item.rk === 'bt' || item.rk === 'cd'; });
+                    } else if (currentFilterType === 'legit') {
+                        items = items.filter(function(item) {
+                            return /^vp/.test(item.rk) || /^bp/.test(item.rk) || /^cp/.test(item.rk);
+                        });
+                    } else if (currentFilterType === 'friendroom') {
+                        items = items.filter(function(item) { return item.type === 'private'; });
+                    }
+                    html = regions(html, items, items.length, dwcjson);
+                    //// look at end of regions function //html = playerStats(html, items[i], items.length);
+                    //}
+                    var playersearch = [];
+                    var froomhoster = [];
+                    var onlineplayer = [];
+
+                    for (var i = 0; i < online; i++) {
+                        if (dwcjson[i].rk) {
+                            //var test = dwcjson[i].numplayers;
+                            if (dwcjson[i].numplayers === "0") {
+                                playersearch.push(dwcjson[i]);
+                            }
+                        }
+                        if (dwcjson[i].dwc_mtype === "2" && dwcjson[i].numplayers === "0") {
+                            froomhoster.push(dwcjson[i]);
+                        }
+                        else {
+                            if (!dwcjson[i].rk && dwcjson[i].dwc_mtype !== '2' && dwcjson[i].dwc_mtype !== '4' && dwcjson[i].dwc_mtype !== '3') {
+                                onlineplayer.push(dwcjson[i]);
+                            }
+                        }
+                    }
+
+                    //for (var i = 0; i < online; i++) {
+                    if (currentFilterType !== 'roomid') {
+                        var playersearch = [];
+                        var froomhoster = [];
+                        var onlineplayer = [];
+                        for (var i = 0; i < online; i++) {
+                            if (dwcjson[i].rk) {
+                                if (dwcjson[i].numplayers === "0") {
+                                    playersearch.push(dwcjson[i]);
+                                }
+                            }
+                            if (dwcjson[i].dwc_mtype === "2" && dwcjson[i].numplayers === "0") {
+                                froomhoster.push(dwcjson[i]);
+                            } else {
+                                if (!dwcjson[i].rk && dwcjson[i].dwc_mtype !== '2' && dwcjson[i].dwc_mtype !== '4' && dwcjson[i].dwc_mtype !== '3') {
+                                    onlineplayer.push(dwcjson[i]);
+                                }
+                            }
+                        }
+                        // Filtering function for player arrays
+                        function filterPlayerByType(player) {
+                            if (currentFilterType === 'deluxe') {
+                                return player.rk === 'vs_760' || player.rk === 'bt_760' || player.rk === 'vp_760' || player.rk === 'bp_760' ||
+                                       player.rk === 'vs_866' || player.rk === 'bt_866' || player.rk === 'vp_866' || player.rk === 'bp_866';
+                            } else if (currentFilterType === 'worldwides') {
+                                return player.rk === 'vs' || player.rk === 'bt' || player.rk === 'cd';
+                            } else if (currentFilterType === 'legit') {
+                                return player.rk && (/^vp/.test(player.rk) || /^bp/.test(player.rk) || /^cp/.test(player.rk));
+                            } else if (currentFilterType === 'friendroom') {
+                                return player.dwc_mtype === '2';
+                            } else if (currentFilterType === 'custom' && currentFilterValue) {
+                                var customRegion = currentFilterValue.replace(/[^0-9]/g, '');
+                                return player.rk && new RegExp('_[0]*' + customRegion + '$').test(player.rk);
+                            }
+                            return true; // 'all' or unknown filter
+                        }
+                        playersearch = playersearch.filter(filterPlayerByType);
+                        froomhoster = froomhoster.filter(filterPlayerByType);
+                        // Do NOT filter onlineplayer, always show all online players
+                        //onlineplayer = onlineplayer.filter(filterPlayerByType);
+                        if (playersearch.length != 0) {
+                            html += "Players searching for a room: <br> ";
+                            html = legacy(html, playersearch, playersearch.length);
+                        }
+                        if (froomhoster.length != 0) {
+                            html += "Players in a friend room: <br> ";
+                            html = froomer(html, froomhoster, froomhoster.length);
+                        }
+                        if (onlineplayer.length != 0) {
+                            html += "Online players: <br> ";
+                            html = isonline(html, onlineplayer, onlineplayer.length);
+                        }
+                    }
+                    document.getElementById("result").innerHTML = html;
+                }
+
+
+            };
+
+
+            xhr2.send();
+
+            //xhr.send();
+
+            //xhr2.send();
+
+
+
+        }
+
+        // Function to load and parse the mapping file
+        function loadRoomMappings() {
+            var xhr3 = new XMLHttpRequest();
+            var protocol = window.location.protocol;
+            var url;
+
+            if (protocol === "file:") {
+                // If the protocol is file:///, use the online URL
+                url = "http://ninjawfc.com/mkw/room_mappings.txt" //?_=" + Date.now();
+            } else {
+                // If the protocol is http or https, use the local URL
+                url = "room_mappings.txt" //?_=" + Date.now(); //wait to deploy new newwfc code
+            }
+
+            xhr3.open("POST", url, true);
+            xhr3.onreadystatechange = function () {
+                if (xhr3.readyState === 4) {
+                    if (xhr3.status === 200) {
+                        var mappings = {};
+                        var lines = xhr3.responseText.split("\n");
+                        lines.forEach(function (line) {
+                            var parts = line.trim().split("|");
+                            if (parts.length === 2) {
+                                mappings[parts[0].trim()] = parts[1].trim();
+                            }
+                        });
+                        regname = mappings; // Assign mappings to the global regions variable
+                        // Call updateStats function after successful loading of mappings
+                        updateStats();
+                    } else {
+                        console.error("Failed to load room mappings. Status code:", xhr3.status);
+                    }
+                }
+            };
+            xhr3.send();
+        }
+
+        var regname = {};
+        var apijson = [];
+        var dwcjson = [];
+        var autoRefreshEnabled;
+        var intervalId;
+        //intervalId = setInterval(updateStats, 10000);
+
+        // Check if autoRefreshEnabled is saved in localStorage, if not, default to true
+        if (localStorage.getItem("autoRefreshEnabled") === null) {
+            autoRefreshEnabled = true;
+            // Save the default value to localStorage
+            localStorage.setItem("autoRefreshEnabled", autoRefreshEnabled);
+        } else {
+            // Get the saved value from localStorage
+            autoRefreshEnabled = localStorage.getItem("autoRefreshEnabled") === "true";
+        }
+
+        if (localStorage.getItem("refreshInterval") === null) {
+            refreshInterval = 10000; // Default refresh interval (10 seconds)
+            localStorage.setItem("refreshInterval", refreshInterval);
+        } else {
+            refreshInterval = parseInt(localStorage.getItem("refreshInterval"), 10);
+        }
+
+        if (autoRefreshEnabled = true) {
+            intervalId = setInterval(updateStats, refreshInterval);
+        }
+        loadRoomMappings();
+        //updateStats();
+
+        //setInterval(updateStats, 10000);
+
+        // Add filter state
+        var currentFilterType = 'all';
+        var currentFilterValue = '';
+
+        function applyFilter(fromUrl) {
+            var filterType = document.getElementById('filterType').value;
+            var filterValue = document.getElementById('filterValue');
+            var clearBtn = document.getElementById('clearRoomIdBtn');
+            currentFilterType = filterType;
+            if (filterType === 'roomid' || filterType === 'custom') {
+                filterValue.style.display = '';
+                clearBtn.style.display = '';
+                currentFilterValue = filterValue.value.trim();
+            } else {
+                filterValue.style.display = 'none';
+                clearBtn.style.display = 'none';
+                currentFilterValue = '';
+            }
+            if (!fromUrl) {
+                // Update URL params when user changes filter
+                var params = {};
+                if (filterType === 'roomid' && filterValue.value.trim()) {
+                    params.filter = 'roomid';
+                    params.roomid = filterValue.value.trim();
+                } else if (filterType === 'custom' && filterValue.value.trim()) {
+                    params.filter = 'custom';
+                    params.region = filterValue.value.trim();
+                } else if (filterType !== 'all') {
+                    params.filter = filterType;
+                }
+                setQueryParams(params);
+            }
+            updateStats();
+        }
+
+        function setRoomIdFilter(roomId) {
+            document.getElementById('filterType').value = 'roomid';
+            document.getElementById('filterValue').value = roomId;
+            document.getElementById('filterValue').style.display = '';
+            document.getElementById('clearRoomIdBtn').style.display = '';
+            currentFilterType = 'roomid';
+            currentFilterValue = roomId;
+            setQueryParams({filter: 'roomid', roomid: roomId});
+            updateStats();
+        }
+
+        function clearRoomIdFilter() {
+            document.getElementById('filterType').value = 'all';
+            document.getElementById('filterValue').value = '';
+            document.getElementById('filterValue').style.display = 'none';
+            document.getElementById('clearRoomIdBtn').style.display = 'none';
+            currentFilterType = 'all';
+            currentFilterValue = '';
+            setQueryParams({});
+            updateStats();
+        }
+
+        function getQueryParams() {
+            var params = {};
+            window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+                params[key] = decodeURIComponent(value);
+            });
+            return params;
+        }
+
+        function setQueryParams(params) {
+            var query = Object.keys(params)
+                .filter(function(key) { return params[key] !== undefined && params[key] !== null && params[key] !== ''; })
+                .map(function(key) { return encodeURIComponent(key) + '=' + encodeURIComponent(params[key]); })
+                .join('&');
+            var newUrl = window.location.pathname + (query ? '?' + query : '');
+            window.history.replaceState(null, '', newUrl);
+        }
+
+        // On page load, check for filter params in URL
+        window.addEventListener('DOMContentLoaded', function() {
+            var params = getQueryParams();
+            if (params.filter) {
+                var filterType = params.filter;
+                if ([
+                    'roomid','deluxe','worldwides','legit','friendroom','custom'
+                ].indexOf(filterType) !== -1) {
+                    document.getElementById('filterType').value = filterType;
+                    if (filterType === 'roomid' && params.roomid) {
+                        document.getElementById('filterValue').value = params.roomid;
+                        document.getElementById('filterValue').style.display = '';
+                        document.getElementById('clearRoomIdBtn').style.display = '';
+                    } else if (filterType === 'custom' && params.region) {
+                        document.getElementById('filterValue').value = params.region;
+                        document.getElementById('filterValue').style.display = '';
+                        document.getElementById('clearRoomIdBtn').style.display = '';
+                    } else {
+                        document.getElementById('filterValue').style.display = 'none';
+                        document.getElementById('clearRoomIdBtn').style.display = 'none';
+                        document.getElementById('filterValue').value = '';
+                    }
+                    applyFilter(true);
+                }
+            }
+        });
+
+    </script>
+
+
+</body>
+
+</html>
