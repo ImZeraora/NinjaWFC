@@ -184,7 +184,7 @@
 
         function kickButton(action, pid, password) {
 
-            var url = protocol + `76.143.129.153/api/kick?secret=${password}&pid=${pid}`;
+            var url = protocol + `nas.ninjawfc.com/api/kick?secret=${password}&pid=${pid}`;
             fetch(url, { method: "POST" })
                 .then(response => response.json())
                 .then(data => {
