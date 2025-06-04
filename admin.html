@@ -201,7 +201,7 @@
 
         function testz(action, pid, password) {
             var url = protocol + `nas.ninjawfc.com/api/test?secret=${password}&pid=${pid}&type=payload`;
-            fetch(url, { method: "POST", mode: 'no-cors' })
+            fetch(url, { method: "POST"})
                 .then(response => response.json())
                 .then(data => {
                     console.log("Kick action response:", data);
