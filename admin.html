@@ -490,11 +490,11 @@
 
             var xhr2 = new XMLHttpRequest();
             //var protocol = window.location.protocol.startsWith("https") ? "https://" : "http://";
-            var url = "http://nas.ninjawfc.com/json";
+            var url = protocol + "nas.ninjawfc.com/json";
             xhr2.open("GET", url, true);
             var xhr = new XMLHttpRequest();
             //var protocol = window.location.protocol.startsWith("https") ? "https://" : "http://";
-            var url = "http://nas.ninjawfc.com/api/groups?game=mariokartwii";
+            var url = protocol + "http://nas.ninjawfc.com/api/groups?game=mariokartwii";
             xhr.open("GET", url, true);
             xhr2.onreadystatechange = function () {
                 if (xhr2.readyState === XMLHttpRequest.DONE && xhr2.status === 200) {
