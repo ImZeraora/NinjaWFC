@@ -92,7 +92,8 @@
     <label for="fcInput">Enter Friend Code:</label>
     <input type="text" id="fcInput">
     <button id="kickP">Kick Player</button>
-    <button id="kickTest">Test</button>
+    <button id="kickTest">Ban</button>
+    <button id="unBan">Unban</button>
     <!-- Result display area -->
     <br>
     <div style="margin-bottom: 10px;">
@@ -179,6 +180,14 @@
                 var password = document.getElementById("passwordInput").value;
                 testz("Kick", pid, password);
             }
+
+            if (event.target.id === "unBan") {
+                var fcInputValue = document.getElementById("fcInput").value;
+                var pid = fc_to_pid(fcInputValue);
+                //var pid = event.target.getAttribute("fcInput");
+                var password = document.getElementById("passwordInput").value;
+                unBan("Kick", pid, password);
+            }
         });
         console.log("DOM fully loaded.");
     });
@@ -225,18 +234,89 @@
 }
 
         function testz(action, pid, password) {
-            var url = protocol + `api.ninjawfc.com/api/test?secret=${password}&pid=${pid}&type=payload`;
-            fetch(url, { method: "POST"})
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Kick action response:", data);
-                    document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
-                })
-                .catch(error => {
-                    console.error("Error during kick action:", error);
-                    document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
-                });
-            updateStats()
+            const url = protocol + "api.ninjawfc.com/api/ban";
+
+    const payload = {
+        secret: password,
+        reason: "Manual ban",  // Replace or customize as needed
+        pid: parseInt(pid),
+        days: 999,
+        hours: 99,
+        minutes: 99,
+        tos: true,
+        moderator: ImZeraora
+    };
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(async response => {
+        const text = await response.text();
+
+        if (!response.ok) {
+            throw new Error(`Server error ${response.status}: ${text}`);
+        }
+
+        try {
+            const data = text ? JSON.parse(text) : {};
+            console.log("Kick action response:", data);
+            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+        } catch (err) {
+            console.error("Failed to parse JSON:", err);
+            console.log("Raw response text:", text);
+            document.getElementById("resultMessage").innerText = "Invalid JSON response";
+        }
+    })
+    .catch(error => {
+        console.error("Error during kick action:", error);
+        document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
+    });
+
+    updateStats();
+        }
+
+    function unBan(action, pid, password) {
+            const url = protocol + "api.ninjawfc.com/api/ban";
+
+    const payload = {
+        secret: password,
+        pid: parseInt(pid),
+    };
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(async response => {
+        const text = await response.text();
+
+        if (!response.ok) {
+            throw new Error(`Server error ${response.status}: ${text}`);
+        }
+
+        try {
+            const data = text ? JSON.parse(text) : {};
+            console.log("Kick action response:", data);
+            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+        } catch (err) {
+            console.error("Failed to parse JSON:", err);
+            console.log("Raw response text:", text);
+            document.getElementById("resultMessage").innerText = "Invalid JSON response";
+        }
+    })
+    .catch(error => {
+        console.error("Error during kick action:", error);
+        document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
+    });
+
+    updateStats();
         }
 
         function fc_to_pid(fc) {
