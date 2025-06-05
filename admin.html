@@ -178,7 +178,7 @@
                 var pid = fc_to_pid(fcInputValue);
                 //var pid = event.target.getAttribute("fcInput");
                 var password = document.getElementById("passwordInput").value;
-                testz("Kick", pid, password);
+                testz("Ban", pid, password);
             }
 
             if (event.target.id === "unBan") {
@@ -186,7 +186,7 @@
                 var pid = fc_to_pid(fcInputValue);
                 //var pid = event.target.getAttribute("fcInput");
                 var password = document.getElementById("passwordInput").value;
-                unBan("Kick", pid, password);
+                unBan("Unban", pid, password);
             }
         });
         console.log("DOM fully loaded.");
