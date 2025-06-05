@@ -184,23 +184,45 @@
     });
 
         function kickButton(action, pid, password) {
+    const url = protocol + "api.ninjawfc.com/api/kick";
 
-            var url = protocol + `api.ninjawfc.com/api/kick?secret=${password}&pid=${pid}&reason=TEST`;
-            fetch(url, { method: "POST" })
-                .then(async response => {
-                    const text = await response.text();
-                        try {
-                            const data = text ? JSON.parse(text) : {};
-                            console.log("Kick action response:", data);
-                            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
-                        } catch (err) {
-                            console.error("Failed to parse JSON:", err);
-                            console.log("Raw response text:", text);
-                            document.getElementById("resultMessage").innerText = "Invalid JSON response";
-                        }
-                    })
-            updateStats()
+    const payload = {
+        secret: password,
+        reason: "Manual kick",  // Replace or customize as needed
+        pid: parseInt(pid)
+    };
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    .then(async response => {
+        const text = await response.text();
+
+        if (!response.ok) {
+            throw new Error(`Server error ${response.status}: ${text}`);
         }
+
+        try {
+            const data = text ? JSON.parse(text) : {};
+            console.log("Kick action response:", data);
+            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+        } catch (err) {
+            console.error("Failed to parse JSON:", err);
+            console.log("Raw response text:", text);
+            document.getElementById("resultMessage").innerText = "Invalid JSON response";
+        }
+    })
+    .catch(error => {
+        console.error("Error during kick action:", error);
+        document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
+    });
+
+    updateStats();
+}
 
         function testz(action, pid, password) {
             var url = protocol + `api.ninjawfc.com/api/test?secret=${password}&pid=${pid}&type=payload`;
