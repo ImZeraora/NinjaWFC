@@ -96,6 +96,22 @@
     <button id="unBan">Unban</button>
     <!-- Result display area -->
     <br>
+
+    <label for="days">Enter Ban Duration: Days</label>
+    <input type="text" id="days">
+    <label for="hours">Hours</label>
+    <input type="text" id="hours">
+    <label for="minutes">Minutes</label>
+    <input type="text" id="minutes">
+
+    <br>
+    <label for="reason">Ban Reason:</label>
+    <input type="text" id="reason">
+
+    <br>
+    <label for="musername">Moderator Username:</label>
+    <input type="text" id="musername">
+
     <div style="margin-bottom: 10px;">
         <label for="filterType">Filter by: </label>
         <select id="filterType" onchange="applyFilter()">
@@ -176,7 +192,12 @@
                 var pid = fc_to_pid(fcInputValue);
                 //var pid = event.target.getAttribute("fcInput");
                 var password = document.getElementById("passwordInput").value;
-                testz("Ban", pid, password);
+                var days = document.getElementById("days").value;
+                var hours = document.getElementById("hours").value;
+                var minutes = document.getElementById("minutes").value;
+                var reason = document.getElementById("reason").value;
+                var musername = document.getElementById("musername").value;
+                testz("Ban", pid, password, days, hours, minutes, reason, musername);
             }
 
             if (event.target.id === "unBan") {
@@ -236,13 +257,13 @@
 
     const payload = {
         secret: password,
-        reason: "Manual ban",  // Replace or customize as needed
+        reason: reason,  // Replace or customize as needed
         pid: parseInt(pid),
-        days: 999,
-        hours: 99,
-        minutes: 99,
+        days: days,
+        hours: hours,
+        minutes: minutes,
         tos: true,
-        moderator: "ImZeraora"
+        moderator: musername
     };
 
     fetch(url, {
