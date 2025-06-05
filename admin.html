@@ -6,16 +6,16 @@
     <script src="md5.min.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>NewWFC MKW Management</title>
-    <link rel="icon" href="./../images/newwfc.png">
+    <title>NinjaWFC MKW Management</title>
+    <link rel="icon" href="/favicon.png">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:type" content="NewWFC Webpage">
-    <meta property="og:title" content="NewWFC" />
+    <meta property="og:type" content="NinjaWFC Webpage">
+    <meta property="og:title" content="NinjaWFC" />
     <meta property="og:description" content="MKW Management!" />
     <meta property="og:url" content="http://ninjawfc.com/mkw" />
-    <meta property="og:image" content="./../images/newwfc.png" />
+    <meta property="og:image" content="/favicon.png" />
     <style>
         body {
             background-color: #424549;
@@ -101,9 +101,7 @@
         <select id="filterType" onchange="applyFilter()">
             <option value="all">All</option>
             <option value="roomid">Room ID</option>
-            <option value="deluxe">Deluxe (rk = vs_760/bt_760)</option>
-            <option value="worldwides">WorldWides (rk = vs/bt/cd)</option>
-            <option value="legit">Legit (rk = vp/bp/cp)</option>
+            <option value="worldwides">Worldwides (rk = vs/bt/cd)</option>
             <option value="friendroom">Friend Rooms (type = private)</option>
             <option value="custom">Custom Region</option>
         </select>
@@ -264,7 +262,7 @@
         try {
             const data = text ? JSON.parse(text) : {};
             console.log("Kick action response:", data);
-            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+            document.getElementById("resultMessage").innerText = `Ban action response: ${JSON.stringify(data)}`;
         } catch (err) {
             console.error("Failed to parse JSON:", err);
             console.log("Raw response text:", text);
@@ -273,7 +271,7 @@
     })
     .catch(error => {
         console.error("Error during kick action:", error);
-        document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
+        document.getElementById("resultMessage").innerText = "Error during ban action: " + error;
     });
 
     updateStats();
@@ -304,7 +302,7 @@
         try {
             const data = text ? JSON.parse(text) : {};
             console.log("Kick action response:", data);
-            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+            document.getElementById("resultMessage").innerText = `Unban action response: ${JSON.stringify(data)}`;
         } catch (err) {
             console.error("Failed to parse JSON:", err);
             console.log("Raw response text:", text);
@@ -313,7 +311,7 @@
     })
     .catch(error => {
         console.error("Error during kick action:", error);
-        document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
+        document.getElementById("resultMessage").innerText = "Error during Unban action: " + error;
     });
 
     updateStats();
