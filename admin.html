@@ -187,15 +187,18 @@
 
             var url = protocol + `api.ninjawfc.com/api/kick?secret=${password}&pid=${pid}`;
             fetch(url, { method: "POST" })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("Kick action response:", data);
-                    document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
-                })
-                .catch(error => {
-                    console.error("Error during kick action:", error);
-                    document.getElementById("resultMessage").innerText = "Error during kick action: " + error;
-                });
+                .then(async response => {
+                    const text = await response.text();
+                        try {
+                            const data = text ? JSON.parse(text) : {};
+                            console.log("Kick action response:", data);
+                            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+                        } catch (err) {
+                            console.error("Failed to parse JSON:", err);
+                            console.log("Raw response text:", text);
+                            document.getElementById("resultMessage").innerText = "Invalid JSON response";
+                        }
+                    })
             updateStats()
         }
 
