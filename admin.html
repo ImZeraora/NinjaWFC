@@ -259,9 +259,9 @@
         secret: password,
         reason: reason,  // Replace or customize as needed
         pid: parseInt(pid),
-        days: days,
-        hours: hours,
-        minutes: minutes,
+        days: parseInt(days) || 0,
+        hours: parseInt(hours) || 0,
+        minutes: parseInt(minutes) || 15,
         tos: true,
         moderator: musername
     };
