@@ -185,7 +185,7 @@
 
         function kickButton(action, pid, password) {
 
-            var url = protocol + `nas.ninjawfc.com/api/kick?secret=${password}&pid=${pid}`;
+            var url = protocol + `ninjawfc.com/api/kick?secret=${password}&pid=${pid}`;
             fetch(url, { method: "POST" })
                 .then(response => response.json())
                 .then(data => {
@@ -200,7 +200,7 @@
         }
 
         function testz(action, pid, password) {
-            var url = protocol + `nas.ninjawfc.com/api/test?secret=${password}&pid=${pid}&type=payload`;
+            var url = protocol + `ninjawfc.com/api/test?secret=${password}&pid=${pid}&type=payload`;
             fetch(url, { method: "POST"})
                 .then(response => response.json())
                 .then(data => {
@@ -491,11 +491,11 @@
 
             var xhr2 = new XMLHttpRequest();
             // var protocol = window.location.protocol.startsWith("https") ? "https://" : "http://";
-            var url = protocol + "nas.ninjawfc.com/json";
+            var url = protocol + "ninjawfc.com/json";
             xhr2.open("GET", url, true);
             var xhr = new XMLHttpRequest();
             // var protocol = window.location.protocol.startsWith("https") ? "https://" : "http://";
-            var url = protocol + "nas.ninjawfc.com/api/groups?game=mariokartwii";
+            var url = protocol + "ninjawfc.com/api/groups?game=mariokartwii";
             xhr.open("GET", url, true);
             xhr2.onreadystatechange = function () {
                 if (xhr2.readyState === XMLHttpRequest.DONE && xhr2.status === 200) {
