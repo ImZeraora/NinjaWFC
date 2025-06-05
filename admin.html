@@ -171,7 +171,8 @@
             if (event.target.classList.contains("kickBtn")) {
                 var pid = event.target.getAttribute("data-pid");
                 var password = document.getElementById("passwordInput").value;
-                kickButton("Kick", pid, password);
+                var reason = document.getElementById("reason").value;
+                kickButton("Kick", pid, password, reason, fcInputValue);
             }
             if (event.target.classList.contains("testBtn")) {
                 var pid = event.target.getAttribute("data-pid");
@@ -183,7 +184,8 @@
                 var fcInputValue = document.getElementById("fcInput").value;
                 var pid = fc_to_pid(fcInputValue);
                 var password = document.getElementById("passwordInput").value;
-                kickButton("Kick", pid, password);
+                var reason = document.getElementById("reason").value;
+                kickButton("Kick", pid, password, reason, fcInputValue);
             }
             // <button id="kickP">Kick Player</button>
             // <button id="kickTest">Test</button>
@@ -197,7 +199,7 @@
                 var minutes = document.getElementById("minutes").value;
                 var reason = document.getElementById("reason").value;
                 var musername = document.getElementById("musername").value;
-                testz("Ban", pid, password, days, hours, minutes, reason, musername);
+                testz("Ban", pid, password, days, hours, minutes, reason, musername, fcInputValue);
             }
 
             if (event.target.id === "unBan") {
@@ -205,18 +207,19 @@
                 var pid = fc_to_pid(fcInputValue);
                 //var pid = event.target.getAttribute("fcInput");
                 var password = document.getElementById("passwordInput").value;
-                unBan("Unban", pid, password);
+                unBan("Unban", pid, password, fcInputValue);
             }
         });
         console.log("DOM fully loaded.");
     });
 
-        function kickButton(action, pid, password) {
+        function kickButton(action, pid, password, reason, fcInputValue) {
     const url = protocol + "api.ninjawfc.com/api/kick";
 
     const payload = {
         secret: password,
-        reason: "Manual kick",  // Replace or customize as needed
+        reason: reason || "No reason provided",  // Replace or customize as needed
+        fcInputValue: fcInputValue,
         pid: parseInt(pid)
     };
 
@@ -237,7 +240,7 @@
         try {
             const data = text ? JSON.parse(text) : {};
             console.log("Kick action response:", data);
-            document.getElementById("resultMessage").innerText = `Kick action response: ${JSON.stringify(data)}`;
+            document.getElementById("resultMessage").innerText = fcInputValue + ` has now been kicked.`;
         } catch (err) {
             console.error("Failed to parse JSON:", err);
             console.log("Raw response text:", text);
@@ -252,7 +255,7 @@
     updateStats();
 }
 
-        function testz(action, pid, password, days, hours, minutes, reason, musername) {
+        function testz(action, pid, password, days, hours, minutes, reason, musername, fcInputValue) {
             const url = protocol + "api.ninjawfc.com/api/ban";
 
     const payload = {
@@ -263,6 +266,7 @@
         hours: parseInt(hours) || 0,
         minutes: parseInt(minutes) || 15,
         tos: true,
+        fcInputValue: fcInputValue,
         moderator: musername || "Anonymous"
     };
 
@@ -283,7 +287,7 @@
         try {
             const data = text ? JSON.parse(text) : {};
             console.log("Kick action response:", data);
-            document.getElementById("resultMessage").innerText = `Ban action response: ${JSON.stringify(data)}`;
+            document.getElementById("resultMessage").innerText = fcInputValue + ` has now been banned for ` + days + ` days, ` + hours + ` hours and ` + minutes + ` minutes.`;
         } catch (err) {
             console.error("Failed to parse JSON:", err);
             console.log("Raw response text:", text);
@@ -298,7 +302,7 @@
     updateStats();
         }
 
-    function unBan(action, pid, password) {
+    function unBan(action, pid, password, fcInputValue) {
             const url = protocol + "api.ninjawfc.com/api/unban";
 
     const payload = {
@@ -323,7 +327,7 @@
         try {
             const data = text ? JSON.parse(text) : {};
             console.log("Kick action response:", data);
-            document.getElementById("resultMessage").innerText = `Unban action response: ${JSON.stringify(data)}`;
+            document.getElementById("resultMessage").innerText = fcInputValue + ` is now unbanned.`;
         } catch (err) {
             console.error("Failed to parse JSON:", err);
             console.log("Raw response text:", text);
