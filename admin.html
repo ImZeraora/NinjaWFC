@@ -244,7 +244,7 @@
         hours: 99,
         minutes: 99,
         tos: true,
-        moderator: ImZeraora
+        moderator: "ImZeraora"
     };
 
     fetch(url, {
@@ -280,7 +280,7 @@
         }
 
     function unBan(action, pid, password) {
-            const url = protocol + "api.ninjawfc.com/api/ban";
+            const url = protocol + "api.ninjawfc.com/api/unban";
 
     const payload = {
         secret: password,
