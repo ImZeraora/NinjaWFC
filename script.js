@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function () {
         '<tr class="players-header-row">' +
         '<th>Player Name</th>' +
         '<th>Friend Code</th>' +
-        '<th>EV</th>' +
-        '<th>EB</th>' +
+        '<th>VR</th>' +
+        '<th>BR</th>' +
         '</tr>' +
         '</tbody>';
 
