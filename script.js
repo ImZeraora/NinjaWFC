@@ -27,41 +27,75 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     groups.forEach(function (group) {
-      const roomCard = document.createElement('div');
-      roomCard.className = 'room-card';
-
       const createdDate = new Date(group.created);
       const roomOpenDuration = timeSince(createdDate);
       const rkLabel = getRkLabel(group.rk);
       const players = group.players || {};
-
-      roomCard.innerHTML =
-        '<h3 class="room-title">Room ID: ' + (group.id || 'Unknown') + '</h3>' +
-        '<p><strong>Region (RK):</strong> ' + rkLabel + '</p>' +
-        '<p><strong>Game:</strong> ' + (group.game || 'mariokartwii') + '</p>' +
-        '<p><strong>Open for:</strong> ' + roomOpenDuration + '</p>' +
-        '<p><strong>Players:</strong></p>';
-
+      const gameValue = group.game || 'mariokartwii';
+      const showGameRow = String(gameValue).toLowerCase() !== 'mariokartwii';
+      const gameRowHtml = showGameRow
+        ? '<tr>' +
+          '<td class="label-cell">Game</td>' +
+          '<td colspan="3">' + escapeHtml(gameValue) + '</td>' +
+          '</tr>'
+        : '';
+      const roomTableWrapper = document.createElement('div');
+      const roomTable = document.createElement('table');
       const playerEntries = Object.values(players);
+
+      roomTableWrapper.className = 'room-table-wrapper';
+      roomTable.className = 'room-table';
+      roomTable.innerHTML =
+        '<thead>' +
+        '<tr><th colspan="4">Room ID: ' + escapeHtml(group.id || 'Unknown') + '</th></tr>' +
+        '</thead>' +
+        '<tbody>' +
+        '<tr>' +
+        '<td class="label-cell">Region (RK)</td>' +
+        '<td colspan="3">' + escapeHtml(rkLabel) + '</td>' +
+        '</tr>' +
+        gameRowHtml +
+        '<tr>' +
+        '<td class="label-cell">Open For</td>' +
+        '<td colspan="3">' + escapeHtml(roomOpenDuration) + '</td>' +
+        '</tr>' +
+        '<tr class="players-header-row">' +
+        '<th>Player Name</th>' +
+        '<th>Friend Code</th>' +
+        '<th>EV</th>' +
+        '<th>EB</th>' +
+        '</tr>' +
+        '</tbody>';
+
       if (playerEntries.length === 0) {
-        const noPlayers = document.createElement('div');
-        noPlayers.className = 'room-player';
-        noPlayers.textContent = 'No players in this room.';
-        roomCard.appendChild(noPlayers);
+        const emptyRow = document.createElement('tr');
+        emptyRow.className = 'no-players-row';
+        emptyRow.innerHTML = '<td colspan="4">No players in this room.</td>';
+        roomTable.querySelector('tbody').appendChild(emptyRow);
       } else {
         playerEntries.forEach(function (player) {
-          const playerDiv = document.createElement('div');
-          playerDiv.className = 'room-player';
-          playerDiv.innerHTML =
-            '<p><strong>Name:</strong> ' + (player.name || 'Unknown') + '</p>' +
-            '<p><strong>Friend Code:</strong> ' + (player.fc || 'Unknown') + '</p>' +
-            '<p><strong>EV:</strong> ' + (player.ev || 'N/A') + ' | <strong>EB:</strong> ' + (player.eb || 'N/A') + '</p>';
-          roomCard.appendChild(playerDiv);
+          const playerRow = document.createElement('tr');
+          playerRow.innerHTML =
+            '<td>' + escapeHtml(player.name || 'Unknown') + '</td>' +
+            '<td>' + escapeHtml(player.fc || 'Unknown') + '</td>' +
+            '<td>' + escapeHtml(player.ev || 'N/A') + '</td>' +
+            '<td>' + escapeHtml(player.eb || 'N/A') + '</td>';
+          roomTable.querySelector('tbody').appendChild(playerRow);
         });
       }
 
-      groupsContainer.appendChild(roomCard);
+      roomTableWrapper.appendChild(roomTable);
+      groupsContainer.appendChild(roomTableWrapper);
     });
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   function getRkLabel(rk) {

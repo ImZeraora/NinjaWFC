@@ -29,6 +29,11 @@ header {
   opacity: 0%;
 }
 
+#header {
+  overflow: hidden;
+  clip-path: inset(0 0 0 0 round 0 0 25px 25px);
+}
+
 #NinjaWFCTitle {
   border-radius: 25px;
   background: #ffffff;
@@ -135,26 +140,48 @@ header {
   color: #a00000;
 }
 
-.room-card {
-  background: #ffffff;
-  border: 3px solid black;
-  border-radius: 20px;
-  padding: 18px;
+.room-table-wrapper {
   margin-bottom: 18px;
 }
 
-.room-card p {
-  margin: 8px 0;
+.room-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 3px solid black;
+  border-radius: 14px;
+  overflow: hidden;
 }
 
-.room-title {
-  margin-top: 0;
+.room-table th,
+.room-table td {
+  border: 1px solid #d0d0d0;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
 }
 
-.room-player {
-  border-top: 1px solid #cfcfcf;
-  margin-top: 10px;
-  padding-top: 10px;
+.room-table thead th {
+  background: #381460;
+  color: #ffffff;
+  font-size: 22px;
+  text-align: center;
+}
+
+.room-table .label-cell {
+  font-weight: bold;
+  width: 180px;
+}
+
+.players-header-row th {
+  background: #f0f0f0;
+  color: #000000;
+  font-size: 18px;
+}
+
+.no-players-row td {
+  text-align: center;
+  font-style: italic;
 }
 
 #ninjawfccode {
