@@ -6,7 +6,6 @@ window.onload=function(){
 
 function error(){
     error=document.getElementById("errorinput").value;
-    error=document.getElementById("errorinput").value;
     if(error==22001){
         document.getElementById("result").innerHTML=error + ": " + "An additional step is required to play this game on NinjaWFC! Contact ImZeraora on discord!"
     }

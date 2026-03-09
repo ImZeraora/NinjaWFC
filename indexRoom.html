@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WFC Room Viewer</title>
+  <style>
+    /* General page styles */
+    body {
+      background-color: #121212;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5em;
+      color: #ffffff;
+    }
+
+    /* Room container styles */
+    #room-container {
+      width: 100%;
+      max-width: 900px; /* Max width of the container */
+      margin: 0 auto;  /* Horizontally center the container */
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .room {
+      border: 1px solid #333;
+      background-color: #1e1e1e;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 8px;
+    }
+
+    .room h2 {
+      margin-top: 0;
+      font-size: 1.2em;
+      color: #90caf9;
+    }
+
+    .player {
+      margin-left: 10px;
+      padding: 5px 0;
+      border-top: 1px solid #333;
+    }
+
+    .player:first-child {
+      border-top: none;
+    }
+
+    .label {
+      color: #b0bec5;
+    }
+
+    .error {
+      color: #ef5350;
+    }
+  </style>
+</head>
+<body>
+  <div id="room-container">Loading rooms...</div>
+
+  <script>
+    async function fetchRooms() {
+      try {
+        const response = await fetch('http://nas.ninjawfc.com/api/groups');
+        const data = await response.json();
+        renderRooms(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        document.getElementById('room-container').innerHTML =
+          '<div class="error">Failed to load room data.</div>';
+      }
+    }
+
+    function renderRooms(groups) {
+  const container = document.getElementById('room-container');
+  container.innerHTML = "";
+
+  if (!groups || groups.length === 0) {
+    container.innerHTML = "<div>No active rooms found.</div>";
+    return;
+  }
+
+  groups.forEach(group => {
+    const roomDiv = document.createElement('div');
+    roomDiv.className = 'room';
+
+    const createdDate = new Date(group.created);
+    const roomOpenDuration = timeSince(createdDate);
+
+    // Check if the group has a 'rk' value and log it
+    console.log("Room ID:", group.id);
+    console.log("Region (RK):", group.rk); // Debug log for RK
+
+    let rkLabel = group.rk;
+    if (group.rk === "vs_20000" || group.rk === "bt_20000") {
+      rkLabel = `${group.rk} (Zeraora's Stream Essentials)`;
+    } else if (group.rk === "vs_20001" || group.rk === "bt_20001") {
+      rkLabel = `${group.rk} (Mario Kart Mayhem)`;
+    }
+
+    roomDiv.innerHTML = `
+      <h2>Room ID: ${group.id}</h2>
+      <div><span class="label">Region (RK):</span> ${rkLabel}</div>
+      <div><span class="label">Game:</span> ${group.game}</div>
+      <div><span class="label">Open for:</span> ${roomOpenDuration}</div>
+      <div><span class="label">Players:</span></div>
+    `;
+
+    const players = group.players || {};
+    if (players && Object.keys(players).length === 0) {
+      console.log("No players found for this room.");
+    }
+
+    for (const key in players) {
+      const p = players[key];
+      console.log(`Player data for ${p.name}:`, p); // Debug log for player data
+
+      const playerDiv = document.createElement('div');
+      playerDiv.className = 'player';
+
+      playerDiv.innerHTML = `
+        <div><span class="label">Name:</span> ${p.name}</div>
+        <div><span class="label">Friend Code:</span> ${p.fc}</div>
+        <div><span class="label">EV:</span> ${p.ev || "N/A"} | <span class="label">EB:</span> ${p.eb || "N/A"}</div>
+      `;
+
+      roomDiv.appendChild(playerDiv);
+    }
+
+    container.appendChild(roomDiv);
+  });
+}
+
+
+    function timeSince(date) {
+      const seconds = Math.floor((new Date() - date) / 1000);
+      const minutes = Math.floor(seconds / 60);
+      const hours = Math.floor(minutes / 60);
+      if (hours > 0) return `${hours}h ${minutes % 60}m`;
+      if (minutes > 0) return `${minutes}m`;
+      return `${seconds}s`;
+    }
+
+    fetchRooms();
+    setInterval(fetchRooms, 60000); // Refresh every 60 seconds
+  </script>
+</body>
+</html>

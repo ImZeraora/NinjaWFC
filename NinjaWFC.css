@@ -25,6 +25,7 @@ header {
   width: 100%;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
+  overflow: hidden;
   opacity: 0%;
 }
 
@@ -56,7 +57,6 @@ header {
   display: block;
 }
 
-#creator,
 #error {
   margin-top: 250px;
   text-align: center;
@@ -64,11 +64,7 @@ header {
 
 #nav1,
 #nav2,
-#nav3,
-#nav4,
-#nav5,
-#nav6,
-#nav7 {
+#nav3 {
   border-radius: 25px;
   background: #ffffff;
   padding: 20px;
@@ -110,19 +106,55 @@ header {
   text-decoration: none;
 }
 
-#news,
-#tutorialheader {
+#news {
   text-align: center;
 }
 
 #groupsContainer {
-margin-left: 1075px;
+  max-width: 900px;
+  margin: 20px auto 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 #codeheader,
 #tableStats {
   text-align: center;
   margin-top: 250px;
+}
+
+.stats-status {
+  text-align: center;
+  background: #ffffff;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.stats-error {
+  color: #a00000;
+}
+
+.room-card {
+  background: #ffffff;
+  border: 3px solid black;
+  border-radius: 20px;
+  padding: 18px;
+  margin-bottom: 18px;
+}
+
+.room-card p {
+  margin: 8px 0;
+}
+
+.room-title {
+  margin-top: 0;
+}
+
+.room-player {
+  border-top: 1px solid #cfcfcf;
+  margin-top: 10px;
+  padding-top: 10px;
 }
 
 #ninjawfccode {
@@ -133,249 +165,6 @@ margin-left: 1075px;
   width: 400px;
 }
 
-.button.alternative {
-  --color-hover: #2B3044;
-  --background: #362A89;
-  --hover-back: #6D58FF;
-  --hover-front: #F6F8FF;
-}
-
-.button {
-  --color: #fff;
-  --color-hover: var(--color);
-  --background: #2B3044;
-  --background-hover: var(--background);
-  --hover-back: #6D58FF;
-  --hover-front: #5C86FF;
-  padding: 8px 28px;
-  border-radius: 20px;
-  line-height: 24px;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  border: none;
-  outline: none;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-mask-image: -webkit-radial-gradient(white, black);
-  color: var(--c, var(--color));
-  background: var(--b, var(--background));
-  transition: color 0.2s linear var(--c-d, 0.2s), background 0.3s linear var(--b-d, 0.2s);
-}
-
-.button:not(.simple):before,
-.button:not(.simple):after {
-  content: "";
-  position: absolute;
-  background: var(--pb, var(--hover-back));
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 200%;
-  border-radius: var(--br, 40%);
-  transform: translateY(var(--y, 50%));
-  transition: transform var(--d, 0.4s) ease-in var(--d-d, 0s), border-radius 0.5s ease var(--br-d, 0.08s);
-}
-
-.button:not(.simple):after {
-  --pb: var(--hover-front);
-  --d: .44s;
-}
-
-.button div {
-  z-index: 1;
-  position: relative;
-  display: flex;
-}
-
-.button div span {
-  display: block;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transform: translateZ(0);
-  -webkit-animation: var(--name, none) 0.7s linear forwards 0.18s;
-  animation: var(--name, none) 0.7s linear forwards 0.18s;
-}
-
-.button.in {
-  --name: move;
-}
-
-.button.in:not(.out) {
-  --c: var(--color-hover);
-  --b: var(--background-hover);
-}
-
-.button.in:not(.out):before,
-.button.in:not(.out):after {
-  --y: 0;
-  --br: 5%;
-}
-
-.button.in:not(.out):after {
-  --br: 10%;
-  --d-d: .02s;
-}
-
-.button.in.out {
-  --name: move-out;
-}
-
-.button.in.out:before {
-  --d-d: .06s;
-}
-
-@-webkit-keyframes move {
-
-  30%,
-  36% {
-    transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
-  }
-
-  50% {
-    transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
-  }
-
-  70% {
-    transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
-  }
-}
-
-@keyframes move {
-
-  30%,
-  36% {
-    transform: translateY(calc(-6px * var(--move))) translateZ(0) rotate(calc(-13deg * var(--rotate) * var(--part)));
-  }
-
-  50% {
-    transform: translateY(calc(3px * var(--move))) translateZ(0) rotate(calc(6deg * var(--rotate) * var(--part)));
-  }
-
-  70% {
-    transform: translateY(calc(-2px * var(--move))) translateZ(0) rotate(calc(-3deg * var(--rotate) * var(--part)));
-  }
-}
-
-@-webkit-keyframes move-out {
-
-  30%,
-  36% {
-    transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
-  }
-
-  50% {
-    transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
-  }
-
-  70% {
-    transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
-  }
-}
-
-@keyframes move-out {
-
-  30%,
-  36% {
-    transform: translateY(calc(6px * var(--move))) translateZ(0) rotate(calc(13deg * var(--rotate) * var(--part)));
-  }
-
-  50% {
-    transform: translateY(calc(-3px * var(--move))) translateZ(0) rotate(calc(-6deg * var(--rotate) * var(--part)));
-  }
-
-  70% {
-    transform: translateY(calc(2px * var(--move))) translateZ(0) rotate(calc(3deg * var(--rotate) * var(--part)));
-  }
-}
-
-#creatorimg,
-#creatorimg3 {
-  width: 200px;
-  height: 200px;
-  border: black 5px solid;
-}
-
-#creatorimg2 {
-  width: 150px;
-  height: 200px;
-  border: black 5px solid;
-}
-
-#creatorname {
-  text-decoration: black underline;
-}
-
-.wrapper {
-  height: 100%;
-  width: 100%;
-  background: linear-gradient(124deg, #ff2400, #e81d1d, #e8b71d, #e3e81d, #1de840, #1ddde8, #2b1de8, #dd00f3, #dd00f3);
-  background-size: 1800% 1800%;
-
-  -webkit-animation: rainbow 18s ease infinite;
-  -z-animation: rainbow 18s ease infinite;
-  -o-animation: rainbow 18s ease infinite;
-  animation: rainbow 18s ease infinite;
-}
-
-@-webkit-keyframes rainbow {
-  0% {
-    background-position: 0% 82%
-  }
-
-  50% {
-    background-position: 100% 19%
-  }
-
-  100% {
-    background-position: 0% 82%
-  }
-}
-
-@-moz-keyframes rainbow {
-  0% {
-    background-position: 0% 82%
-  }
-
-  50% {
-    background-position: 100% 19%
-  }
-
-  100% {
-    background-position: 0% 82%
-  }
-}
-
-@-o-keyframes rainbow {
-  0% {
-    background-position: 0% 82%
-  }
-
-  50% {
-    background-position: 100% 19%
-  }
-
-  100% {
-    background-position: 0% 82%
-  }
-}
-
-@keyframes rainbow {
-  0% {
-    background-position: 0% 82%
-  }
-
-  50% {
-    background-position: 100% 19%
-  }
-
-  100% {
-    background-position: 0% 82%
-  }
-}
 
 #featurelist {
   list-style: none;
@@ -450,31 +239,10 @@ margin-left: 1075px;
   #nav1,
   #nav2,
   #nav3,
-  #nav5,
-  #nav6,
-  #nav7,
   #NinjaWFCForm {
     border-radius: 25px;
     background: #ffffff;
     padding: 20px;
     display: none;
-  }
-
-  #nav4 {
-    border-radius: 25px;
-    background: #ffffff;
-    padding: 20px;
-    display: inline;
-    position: absolute;
-    top: 125px;
-    left: 150px;
-
-  }
-
-  #time {
-    display: block;
-    position: absolute;
-    top: 125px;
-    right: 25px;
   }
 }

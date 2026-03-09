@@ -1,98 +1,93 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   const groupsContainer = document.getElementById('groupsContainer');
 
-  fetch('http://nas.ninjawfc.com/api/groups?game=mariokartwii')
-    .then(response => {
+  async function fetchRooms() {
+    groupsContainer.innerHTML = '<div class="stats-status">Loading rooms...</div>';
+
+    try {
+      const response = await fetch('http://nas.ninjawfc.com/api/groups?game=mariokartwii');
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      return response.json();
-    })
-    .then(data => {
-      data.forEach(group => {
-        const groupTable = createGroupTable(group);
-        groupsContainer.appendChild(groupTable);
-      });
-    })
-    .catch(error => {
+
+      const data = await response.json();
+      renderRooms(data);
+    } catch (error) {
       console.error('Error fetching data:', error);
+      groupsContainer.innerHTML = '<div class="stats-status stats-error">Failed to load room data.</div>';
+    }
+  }
+
+  function renderRooms(groups) {
+    groupsContainer.innerHTML = '';
+
+    if (!groups || groups.length === 0) {
+      groupsContainer.innerHTML = '<div class="stats-status">No active rooms found.</div>';
+      return;
+    }
+
+    groups.forEach(function (group) {
+      const roomCard = document.createElement('div');
+      roomCard.className = 'room-card';
+
+      const createdDate = new Date(group.created);
+      const roomOpenDuration = timeSince(createdDate);
+      const rkLabel = getRkLabel(group.rk);
+      const players = group.players || {};
+
+      roomCard.innerHTML =
+        '<h3 class="room-title">Room ID: ' + (group.id || 'Unknown') + '</h3>' +
+        '<p><strong>Region (RK):</strong> ' + rkLabel + '</p>' +
+        '<p><strong>Game:</strong> ' + (group.game || 'mariokartwii') + '</p>' +
+        '<p><strong>Open for:</strong> ' + roomOpenDuration + '</p>' +
+        '<p><strong>Players:</strong></p>';
+
+      const playerEntries = Object.values(players);
+      if (playerEntries.length === 0) {
+        const noPlayers = document.createElement('div');
+        noPlayers.className = 'room-player';
+        noPlayers.textContent = 'No players in this room.';
+        roomCard.appendChild(noPlayers);
+      } else {
+        playerEntries.forEach(function (player) {
+          const playerDiv = document.createElement('div');
+          playerDiv.className = 'room-player';
+          playerDiv.innerHTML =
+            '<p><strong>Name:</strong> ' + (player.name || 'Unknown') + '</p>' +
+            '<p><strong>Friend Code:</strong> ' + (player.fc || 'Unknown') + '</p>' +
+            '<p><strong>EV:</strong> ' + (player.ev || 'N/A') + ' | <strong>EB:</strong> ' + (player.eb || 'N/A') + '</p>';
+          roomCard.appendChild(playerDiv);
+        });
+      }
+
+      groupsContainer.appendChild(roomCard);
     });
-
-  function createGroupTable(groupData) {
-    const groupTable = document.createElement('table');
-    groupTable.classList.add('table', 'table-striped', 'mb-5');
-
-    // Table header for group info
-    const groupInfoHeader = document.createElement('thead');
-    groupInfoHeader.innerHTML = `
-      <tr>
-        <th colspan="2">Group Info</th>
-      </tr>
-    `;
-    groupTable.appendChild(groupInfoHeader);
-
-    // Table body for group info
-    const groupInfoBody = document.createElement('tbody');
-    groupInfoBody.innerHTML = `
-      <tr>
-        <td>Tag:</td>
-        <td>${groupData.id}</td>
-      </tr>
-      <tr>
-        <td>Type:</td>
-        <td>${groupData.type}</td>
-      </tr>
-      <tr>
-        <td>Created:</td>
-        <td>${formatDate(groupData.created)}</td>
-      </tr>
-      <tr>
-        <td>Host:</td>
-        <td>${getPlayerName(groupData.host, groupData.players)}</td>
-      </tr>
-      <tr>
-        <td>Gamemode:</td>
-        <td>${groupData.rk}</td>
-      </tr>
-    `;
-    groupTable.appendChild(groupInfoBody);
-
-    // Separate row for player headers
-    const playersHeader = document.createElement('thead');
-    playersHeader.innerHTML = `
-      <tr>
-        <th>Name</th>
-        <th>Friend Code</th>
-        <th>VR</th>
-        <th>BR</th>
-      </tr>
-    `;
-    groupTable.appendChild(playersHeader);
-
-    // Table body for players
-    const playersBody = document.createElement('tbody');
-    Object.values(groupData.players).forEach(player => {
-      const row = document.createElement('tr');
-      row.innerHTML = `
-        <td>${player.name}</td>
-        <td>${player.fc}</td>
-        <td>${player.ev}</td>
-        <td>${player.eb}</td>
-      `;
-      playersBody.appendChild(row);
-    });
-    groupTable.appendChild(playersBody);
-
-    return groupTable;
   }
 
-  function getPlayerName(hostId, players) {
-    const hostPlayer = players[hostId];
-    return hostPlayer ? hostPlayer.name : 'Unknown';
+  function getRkLabel(rk) {
+    if (rk === 'vs_20000' || rk === 'bt_20000') {
+      return rk + " (Zeraora's Stream Essentials)";
+    }
+    if (rk === 'vs_20001' || rk === 'bt_20001') {
+      return rk + ' (Mario Kart Mayhem)';
+    }
+    return rk || 'Unknown';
   }
 
-  function formatDate(dateString) {
-    const date = new Date(dateString);
-    return date.toLocaleString();
+  function timeSince(date) {
+    const seconds = Math.floor((new Date() - date) / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+
+    if (hours > 0) {
+      return hours + 'h ' + (minutes % 60) + 'm';
+    }
+    if (minutes > 0) {
+      return minutes + 'm';
+    }
+    return seconds + 's';
   }
+
+  fetchRooms();
+  setInterval(fetchRooms, 60000);
 });
