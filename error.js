@@ -45,13 +45,13 @@ function error(){
     else if(error==20100){
         document.getElementById("result").innerHTML=error + ": " + "[NASWII_ERROR_UNKNOWN] Make sure your device is connected to the internet. If your device is connected to the internet, This error should never appear. Contact ImZeraora on discord!"
     }
-    else if(error>=20101){
+    else if(error==20101){
         document.getElementById("result").innerHTML=error + ": " + "[NASWII_ERROR_GAMESPY_MAINTENANCE] This error should never appear. Contact ImZeraora on discord!"
     }
-    else if(error>=20103){
+    else if(error==20103){
         document.getElementById("result").innerHTML=error + ": " + "[NASWII_ERROR_DEVICE_INVALID‎] This error should never appear. Contact ImZeraora on discord!" 
     }
-    else if(error>=20104){
+    else if(error==20104){
         document.getElementById("result").innerHTML=error + ": " + "[NASWII_ERROR_DEVICE_ALREADY_EXISTS] This error should never appear. Contact ImZeraora on discord!"
     }
     else if(error==0){
@@ -93,7 +93,7 @@ function error(){
     else if(error==20930){
         document.getElementById("result").innerHTML=error + ": " + "[WL_ERROR_PAYLOAD_GAME_MISMATCH] This error should never appear. Contact ImZeraora on discord!"
     }
-    else if(error==81010 || error==91010 || error==61010 ){
+    else if(error==81010 || error==91010 || error==61010){
         document.getElementById("result").innerHTML=error + ": " + "This is a general connection error. No immediate action is required, but if this error persists, contact ImZeraora on discord!";
     }
     else{
