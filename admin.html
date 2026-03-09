@@ -91,6 +91,54 @@
             margin-right: 8px;
             margin-bottom: 4px;
         }
+
+        .action-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .action-modal {
+            width: min(520px, 92vw);
+            background: #ffffff;
+            border: 3px solid black;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .action-modal h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .action-modal-row {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 10px;
+        }
+
+        .action-modal-row input {
+            padding: 8px;
+            border: 2px solid #381460;
+            border-radius: 8px;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        .action-modal-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .hidden-row {
+            display: none;
+        }
     </style>
 </head>
 
@@ -133,6 +181,43 @@
         </div>
     </main>
 
+    <div id="actionModalBackdrop" class="action-modal-backdrop">
+        <div class="action-modal">
+            <h3 id="actionModalTitle">Player Action</h3>
+            <p id="actionModalPlayer"></p>
+
+            <div class="action-modal-row" id="daysRow">
+                <label for="banDaysInput">Days</label>
+                <input type="number" id="banDaysInput" min="0" value="0">
+            </div>
+
+            <div class="action-modal-row" id="hoursRow">
+                <label for="banHoursInput">Hours</label>
+                <input type="number" id="banHoursInput" min="0" value="0">
+            </div>
+
+            <div class="action-modal-row" id="minutesRow">
+                <label for="banMinutesInput">Minutes</label>
+                <input type="number" id="banMinutesInput" min="0" value="15">
+            </div>
+
+            <div class="action-modal-row" id="reasonRow">
+                <label for="actionReasonInput">Reason</label>
+                <input type="text" id="actionReasonInput" value="Cheating">
+            </div>
+
+            <div class="action-modal-row" id="moderatorRow">
+                <label for="banModeratorInput">Moderator Username</label>
+                <input type="text" id="banModeratorInput" value="Anonymous">
+            </div>
+
+            <div class="action-modal-actions">
+                <button type="button" class="admin-button" id="cancelActionBtn">Cancel</button>
+                <button type="button" class="admin-button" id="confirmActionBtn">Confirm</button>
+            </div>
+        </div>
+    </div>
+
     <img src="" id="monthimg">
 
     <script>
@@ -143,7 +228,23 @@
             const savePasswordBtn = document.getElementById('savePasswordBtn');
             const refreshRoomsBtn = document.getElementById('refreshRoomsBtn');
             const adminMessage = document.getElementById('adminMessage');
+            const actionModalBackdrop = document.getElementById('actionModalBackdrop');
+            const actionModalTitle = document.getElementById('actionModalTitle');
+            const actionModalPlayer = document.getElementById('actionModalPlayer');
+            const daysRow = document.getElementById('daysRow');
+            const hoursRow = document.getElementById('hoursRow');
+            const minutesRow = document.getElementById('minutesRow');
+            const reasonRow = document.getElementById('reasonRow');
+            const moderatorRow = document.getElementById('moderatorRow');
+            const banDaysInput = document.getElementById('banDaysInput');
+            const banHoursInput = document.getElementById('banHoursInput');
+            const banMinutesInput = document.getElementById('banMinutesInput');
+            const actionReasonInput = document.getElementById('actionReasonInput');
+            const banModeratorInput = document.getElementById('banModeratorInput');
+            const cancelActionBtn = document.getElementById('cancelActionBtn');
+            const confirmActionBtn = document.getElementById('confirmActionBtn');
             const protocol = window.location.protocol.startsWith('https') ? 'https://' : 'http://';
+            let pendingAction = null;
 
             loadSavedPassword();
 
@@ -158,6 +259,45 @@
 
             refreshRoomsBtn.addEventListener('click', function () {
                 fetchRooms();
+            });
+
+            cancelActionBtn.addEventListener('click', function () {
+                closeActionModal();
+            });
+
+            actionModalBackdrop.addEventListener('click', function (event) {
+                if (event.target === actionModalBackdrop) {
+                    closeActionModal();
+                }
+            });
+
+            confirmActionBtn.addEventListener('click', async function () {
+                if (!pendingAction) {
+                    return;
+                }
+
+                if (pendingAction.type === 'kick') {
+                    await kickPlayer({
+                        secret: pendingAction.secret,
+                        pid: pendingAction.pid,
+                        fc: pendingAction.fc,
+                        reason: actionReasonInput.value.trim() || 'No reason provided'
+                    });
+                    closeActionModal();
+                    return;
+                }
+
+                await banPlayer({
+                    secret: pendingAction.secret,
+                    pid: pendingAction.pid,
+                    fc: pendingAction.fc,
+                    days: toNumber(banDaysInput.value, 0),
+                    hours: toNumber(banHoursInput.value, 0),
+                    minutes: toNumber(banMinutesInput.value, 15),
+                    reason: actionReasonInput.value.trim() || 'Cheating',
+                    moderator: banModeratorInput.value.trim() || 'Anonymous'
+                });
+                closeActionModal();
             });
 
             groupsContainer.addEventListener('click', async function (event) {
@@ -184,58 +324,58 @@
                 }
 
                 if (kickBtn) {
-                    const reasonInput = prompt('Kick reason for ' + playerName + ':', 'No reason provided');
-                    if (reasonInput === null) {
-                        return;
-                    }
-
-                    await kickPlayer({
+                    openActionModal({
+                        type: 'kick',
+                        playerName: playerName,
                         secret: secret,
                         pid: pid,
-                        fc: fc,
-                        reason: reasonInput.trim() || 'No reason provided'
+                        fc: fc
                     });
                     return;
                 }
 
                 if (banBtn) {
-                    const daysInput = prompt('Ban days for ' + playerName + ':', '0');
-                    if (daysInput === null) {
-                        return;
-                    }
-
-                    const hoursInput = prompt('Ban hours for ' + playerName + ':', '0');
-                    if (hoursInput === null) {
-                        return;
-                    }
-
-                    const minutesInput = prompt('Ban minutes for ' + playerName + ':', '15');
-                    if (minutesInput === null) {
-                        return;
-                    }
-
-                    const reasonInput = prompt('Ban reason for ' + playerName + ':', 'Cheating');
-                    if (reasonInput === null) {
-                        return;
-                    }
-
-                    const moderatorInput = prompt('Moderator username:', 'Anonymous');
-                    if (moderatorInput === null) {
-                        return;
-                    }
-
-                    await banPlayer({
+                    openActionModal({
+                        type: 'ban',
+                        playerName: playerName,
                         secret: secret,
                         pid: pid,
-                        fc: fc,
-                        days: toNumber(daysInput, 0),
-                        hours: toNumber(hoursInput, 0),
-                        minutes: toNumber(minutesInput, 15),
-                        reason: reasonInput.trim() || 'Cheating',
-                        moderator: moderatorInput.trim() || 'Anonymous'
+                        fc: fc
                     });
                 }
             });
+
+            function openActionModal(action) {
+                pendingAction = action;
+
+                actionModalTitle.textContent = action.type === 'ban' ? 'Ban Player' : 'Kick Player';
+                actionModalPlayer.textContent = 'Player: ' + action.playerName + ' (' + action.fc + ')';
+
+                if (action.type === 'ban') {
+                    daysRow.classList.remove('hidden-row');
+                    hoursRow.classList.remove('hidden-row');
+                    minutesRow.classList.remove('hidden-row');
+                    moderatorRow.classList.remove('hidden-row');
+                    actionReasonInput.value = 'Cheating';
+                    banDaysInput.value = 0;
+                    banHoursInput.value = 0;
+                    banMinutesInput.value = 15;
+                    banModeratorInput.value = 'Anonymous';
+                } else {
+                    daysRow.classList.add('hidden-row');
+                    hoursRow.classList.add('hidden-row');
+                    minutesRow.classList.add('hidden-row');
+                    moderatorRow.classList.add('hidden-row');
+                    actionReasonInput.value = 'No reason provided';
+                }
+
+                actionModalBackdrop.style.display = 'flex';
+            }
+
+            function closeActionModal() {
+                pendingAction = null;
+                actionModalBackdrop.style.display = 'none';
+            }
 
             async function fetchRooms() {
                 groupsContainer.innerHTML = '<div class="stats-status">Loading rooms...</div>';
