@@ -93,6 +93,9 @@ function error(){
     else if(error==20930){
         document.getElementById("result").innerHTML=error + ": " + "[WL_ERROR_PAYLOAD_GAME_MISMATCH] This error should never appear. Contact ImZeraora on discord!"
     }
+    else if(error==81010 || error==91010 || error==61010 ){
+        document.getElementById("result").innerHTML=error + ": " + "This is a general connection error. No immediate action is required, but if this error persists, contact ImZeraora on discord!";
+    }
     else{
         document.getElementById("result").innerHTML="This error does not exist. If you recieved this error message, please contact ImZeraora on discord." 
     }
