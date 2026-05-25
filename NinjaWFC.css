@@ -242,34 +242,119 @@ header {
   display: block;
 }
 
-@media screen and (max-width: 1440px) {
-  #monthimg {
-    position: fixed;
-    bottom: 0%;
-    right: 0%;
-    width: 0px;
-    height: 0px;
-    display: none;
+/* =====================
+   Mobile Styles
+   ===================== */
+@media screen and (max-width: 768px) {
+
+  /* --- Header --- */
+  header {
+    height: 270px;
   }
 
   #logo-home {
-    width: 50px;
-    position: absolute;
-    top: 100px;
-    left: 25px;
+    width: 44px;
+    top: 10px;
+    left: 14px;
   }
 
-  #videoshowcase {
+  #NinjaWFCTitle {
+    padding: 10px 14px;
+    width: auto;
+    max-width: 160px;
+    font-size: 14px;
+  }
+
+  /* Hide timestamp and requests button — too cluttered on small screens */
+  #timestamp {
     display: none;
+  }
+
+  #NinjaWFCForm {
+    display: none;
+  }
+
+  /* Nav: allow items to wrap and reduce padding */
+  #nav {
+    margin-top: 55px;
+    margin-right: 0;
+    padding: 0 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
   }
 
   #nav1,
   #nav2,
-  #nav3,
-  #NinjaWFCForm {
-    border-radius: 25px;
-    background: #ffffff;
-    padding: 20px;
-    display: none;
+  #nav3 {
+    display: inline-block;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  /* --- Push page content below the taller mobile header --- */
+  #discord {
+    margin-top: 290px;
+  }
+
+  #error {
+    margin-top: 290px;
+  }
+
+  #codeheader,
+  #tableStats {
+    margin-top: 290px;
+  }
+
+  /* Stats groupsContainer starts right after #tableStats heading */
+  #groupsContainer {
+    margin-top: 0;
+    padding: 0 10px;
+  }
+
+  /* --- Index page --- */
+  #news {
+    padding: 0 14px;
+  }
+
+  #videoshowcase {
+    padding: 0 14px;
+    box-sizing: border-box;
+  }
+
+  #videoshowcase iframe {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  /* --- Codes page --- */
+  #ninjawfccode {
+    width: auto;
+    max-width: 85vw;
+    box-sizing: border-box;
+  }
+
+  /* --- Room tables (stats + admin) --- */
+  .room-table thead th {
+    font-size: 16px;
+  }
+
+  .room-table .label-cell {
+    width: 100px;
+    min-width: 80px;
+  }
+
+  .room-table th,
+  .room-table td {
+    padding: 7px 6px;
+    font-size: 13px;
+  }
+
+  .players-header-row th {
+    font-size: 14px;
   }
 }
+
+
